@@ -23,7 +23,7 @@ public class Player : Destructible
     /// <summary>
     /// Оружие в руках
     /// </summary>
-    //private Weapon weapon;
+    private Weapon weapon;
 
     /// <summary>
     /// Индекс активного оружия
@@ -53,7 +53,7 @@ public class Player : Destructible
         rb = GetComponent<Rigidbody2D>();
         //ammoBag = GetComponent<AmmoBag>();
         audio = GetComponent<AudioSource>();
-        //weapon = GetComponentInChildren<Weapon>();
+        weapon = GetComponentInChildren<Weapon>();
         //weapons = new List<WeaponProperties>();
     }
 
@@ -88,8 +88,7 @@ public class Player : Destructible
     /// <param name="point">Цель выстрела</param>
     public void Fire(Vector3 point)
     {
-        //weapon.transform.up = point - weapon.transform.position;
-        //weapon.Fire();
+        weapon.Fire();
     }
 
     /// <summary>
