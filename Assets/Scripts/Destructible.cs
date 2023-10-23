@@ -31,10 +31,16 @@ public class Destructible : Entity
     [SerializeField] protected UnityEvent eventOnDeath;
     public UnityEvent EventOnDeath => eventOnDeath;
 
+    /// <summary>
+    /// Событие при изменении количества здоровья
+    /// </summary>
+    public UnityEvent ChangeHitPoints;
+
 
     protected virtual void Start()
     {
         currentHitPoints = maxHitPoints;
+        ChangeHitPoints.Invoke();
     }
 
 
@@ -47,6 +53,9 @@ public class Destructible : Entity
         if (indestructible) return;
 
         currentHitPoints -= damage;
+
+        ChangeHitPoints.Invoke();
+
         if (currentHitPoints <= 0)
         {
             OnDeath();
