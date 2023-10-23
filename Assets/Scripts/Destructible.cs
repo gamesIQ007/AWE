@@ -72,6 +72,20 @@ public class Destructible : Entity
     }
 
     /// <summary>
+    /// Добавление здоровья
+    /// </summary>
+    /// <param name="addHitPoints">Количество добавляемого здоровья</param>
+    public void AddHitPoints(int addHitPoints)
+    {
+        currentHitPoints += addHitPoints;
+        if (currentHitPoints > maxHitPoints)
+        {
+            currentHitPoints = maxHitPoints;
+        }
+        ChangeHitPoints.Invoke();
+    }
+
+    /// <summary>
     /// Список всех уничтожаемых объектов. HashSet - аналог List, иногда работает быстрее
     /// </summary>
     private static HashSet<Destructible> allDestructibles;

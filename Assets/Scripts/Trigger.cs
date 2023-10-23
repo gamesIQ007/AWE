@@ -20,7 +20,9 @@ public class Trigger : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.root.GetComponent<Player>() != null)
+        Player player = collision.GetComponent<Player>();
+
+        if (player != null)
         {
             activateTrigger.Invoke();
             if (oneUseTrigger)
