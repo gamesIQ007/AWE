@@ -3,6 +3,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 //[RequireComponent(typeof(AmmoBag))]
+[RequireComponent(typeof(PlayerCharacteristics))]
 [RequireComponent(typeof(AudioSource))]
 
 /// <summary>
@@ -28,12 +29,17 @@ public class Player : Destructible
     /// <summary>
     /// Индекс активного оружия
     /// </summary>
-    private int activeWeaponIndex = -1;
+    //private int activeWeaponIndex = -1;
 
     /// <summary>
     /// Сохранённая ссылка на ригид
     /// </summary>
     private Rigidbody2D rb;
+
+    /// <summary>
+    /// Сохранённая ссылка на характеристики
+    /// </summary>
+    private PlayerCharacteristics characteristics;
 		
     /// <summary>
     /// Сохранённая ссылка на сумку боеприпасов
@@ -55,6 +61,7 @@ public class Player : Destructible
         audio = GetComponent<AudioSource>();
         weapon = GetComponentInChildren<Weapon>();
         //weapons = new List<WeaponProperties>();
+        characteristics = GetComponent<PlayerCharacteristics>();
     }
 
     private void FixedUpdate()

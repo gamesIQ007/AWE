@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2772690276721258580}
   - component: {fileID: 7838446458643089791}
   m_Layer: 0
-  m_Name: health-red 32px
+  m_Name: Visual Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

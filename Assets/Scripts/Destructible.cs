@@ -48,7 +48,7 @@ public class Destructible : Entity
     /// Применение урона к объекту.
     /// </summary>
     /// <param name="damage">Наносимый объекту урон.</param>
-    public void ApplyDamage(int damage)
+    public virtual void ApplyDamage(int damage)
     {
         if (indestructible) return;
 
