@@ -15,6 +15,9 @@ public enum Characteristics
 }
 
 
+[RequireComponent(typeof(Player))]
+
+
 /// <summary>
 /// Характеристики игрока
 /// </summary>
@@ -118,6 +121,18 @@ public class PlayerCharacteristics : MonoBehaviour
 
 
     /// <summary>
+    /// Сохранённая ссылка на игрока
+    /// </summary>
+    private Player player;
+
+
+    private void Start()
+    {
+        player = GetComponent<Player>();
+    }
+
+
+    /// <summary>
     /// Добавить очки характеристик
     /// </summary>
     /// <param name="characteristics">Характеристика</param>
@@ -129,6 +144,7 @@ public class PlayerCharacteristics : MonoBehaviour
         if (characteristics == Characteristics.HP)
         {
             hpPoints += value;
+            player.HpCharacteristicChanged();
         }
         if (characteristics == Characteristics.Strenght)
         {

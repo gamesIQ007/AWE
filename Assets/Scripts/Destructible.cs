@@ -22,7 +22,7 @@ public class Destructible : Entity
     /// <summary>
     /// Текущее количество хитпоинтов.
     /// </summary>
-    private int currentHitPoints;
+    protected int currentHitPoints;
     public int HitPoints => currentHitPoints;
 
     /// <summary>
@@ -40,7 +40,7 @@ public class Destructible : Entity
     protected virtual void Start()
     {
         currentHitPoints = maxHitPoints;
-        ChangeHitPoints.Invoke();
+        ChangeHitPoints?.Invoke();
     }
 
 
@@ -54,7 +54,7 @@ public class Destructible : Entity
 
         currentHitPoints -= damage;
 
-        ChangeHitPoints.Invoke();
+        ChangeHitPoints?.Invoke();
 
         if (currentHitPoints <= 0)
         {
@@ -82,7 +82,7 @@ public class Destructible : Entity
         {
             currentHitPoints = maxHitPoints;
         }
-        ChangeHitPoints.Invoke();
+        ChangeHitPoints?.Invoke();
     }
 
     /// <summary>

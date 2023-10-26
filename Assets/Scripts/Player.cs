@@ -12,11 +12,6 @@ using UnityEngine;
 public class Player : Destructible
 {
     /// <summary>
-    /// Скорость перемещения
-    /// </summary>
-    [SerializeField] private float movementSpeed;
-
-    /// <summary>
     /// Список оружия
     /// </summary>
     //[SerializeField] private List<WeaponProperties> weapons;
@@ -40,6 +35,7 @@ public class Player : Destructible
     /// Сохранённая ссылка на характеристики
     /// </summary>
     private PlayerCharacteristics characteristics;
+    public PlayerCharacteristics Characteristics => characteristics;
 		
     /// <summary>
     /// Сохранённая ссылка на сумку боеприпасов
@@ -62,6 +58,10 @@ public class Player : Destructible
         weapon = GetComponentInChildren<Weapon>();
         //weapons = new List<WeaponProperties>();
         characteristics = GetComponent<PlayerCharacteristics>();
+
+        maxHitPoints = characteristics.Hp;
+        currentHitPoints = maxHitPoints;
+        ChangeHitPoints?.Invoke();
     }
 
     private void FixedUpdate()
@@ -80,7 +80,7 @@ public class Player : Destructible
     /// </summary>
     private void UpdateRigitBody()
     {
-        rb.velocity = new Vector2(MovementControl.x * movementSpeed, MovementControl.y * movementSpeed);
+        rb.velocity = new Vector2(MovementControl.x * characteristics.Speed, MovementControl.y * characteristics.Speed);
     }
 
     /*private void SetActiveWeapon(WeaponProperties properties)
@@ -108,4 +108,13 @@ public class Player : Destructible
         activeWeaponIndex = weapons.IndexOf(weaponProperties);
         SetActiveWeapon(weapons[activeWeaponIndex]);
     }*/
+
+    public void HpCharacteristicChanged()
+    {
+        int prevMaxHP = maxHitPoints;
+
+        maxHitPoints = characteristics.Hp;
+        currentHitPoints += maxHitPoints - prevMaxHP;
+        ChangeHitPoints?.Invoke();
+    }
 }
