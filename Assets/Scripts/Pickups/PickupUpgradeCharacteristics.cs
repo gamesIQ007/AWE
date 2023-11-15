@@ -25,7 +25,7 @@ public class PickupUpgradeCharacteristics : Pickup
     {
         base.OnTriggerEnter2D(collision);
 
-        Player player = collision.GetComponent<Player>();
+        Character player = collision.GetComponent<Character>();
 
         if (player != null)
         {

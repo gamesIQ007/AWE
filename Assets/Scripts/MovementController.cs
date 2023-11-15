@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(Player))]
+[RequireComponent(typeof(Character))]
 
 /// <summary>
 /// Класс для управления игроком
@@ -10,12 +10,12 @@ public class MovementController : MonoBehaviour
     /// <summary>
     /// Ссылка на игрока
     /// </summary>
-    private Player player;
+    private Character player;
 
 
     private void Start()
     {
-        player = GetComponent<Player>();
+        player = GetComponent<Character>();
     }
 
     private void Update()
@@ -47,6 +47,11 @@ public class MovementController : MonoBehaviour
             point = new Vector3(point.x, point.y, 0);
 
             player.Fire(point);
+        }
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            player.PlayerMeleeWeapon.Attack();
         }
 
         player.MovementControl = movementVector;

@@ -23,7 +23,7 @@ public class Weapon : MonoBehaviour
     /// <summary>
     /// Ссылка на игрока
     /// </summary>
-    private Player player;
+    private Character player;
 
     /// <summary>
     /// Изображение оружия
@@ -33,7 +33,7 @@ public class Weapon : MonoBehaviour
         
     private void Start()
     {
-        player = transform.root.GetComponent<Player>();
+        player = transform.root.GetComponent<Character>();
         sr = GetComponentInChildren<SpriteRenderer>();
     }
 

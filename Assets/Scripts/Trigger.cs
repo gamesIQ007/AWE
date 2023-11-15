@@ -20,7 +20,7 @@ public class Trigger : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Player player = collision.GetComponent<Player>();
+        Character player = collision.GetComponent<Character>();
 
         if (player != null)
         {

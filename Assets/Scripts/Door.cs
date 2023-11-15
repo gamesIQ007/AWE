@@ -45,7 +45,7 @@ public class Door : MonoBehaviour
     {
         if (doorIsOpen == false) return;
 
-        if (collision.transform.root.GetComponent<Player>() != null)
+        if (collision.transform.root.GetComponent<Character>() != null)
         {
             closedDoor.SetActive(false);
             openDoor.SetActive(true);
@@ -56,7 +56,7 @@ public class Door : MonoBehaviour
     {
         if (doorIsOpen == false) return;
 
-        if (collision.transform.root.GetComponent<Player>() != null)
+        if (collision.transform.root.GetComponent<Character>() != null)
         {
             openDoor.SetActive(false);
             closedDoor.SetActive(true);

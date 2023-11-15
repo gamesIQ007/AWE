@@ -21,7 +21,29 @@ public class Enemy : Destructible
     [SerializeField] private float attackDistance;
 
     /// <summary>
+    /// Расстояние обнаружения
+    /// </summary>
+    [SerializeField] private float detectDistance;
+    public float DetectDistance => detectDistance;
+
+    /// <summary>
     /// Снаряд, которым атакует
     /// </summary>
     //[SerializeField] private Projectile projectile;
+
+    /// <summary>
+    /// Жив ли?
+    /// </summary>
+    private bool isDead;
+    public bool IsDead => isDead;
+
+
+    /// <summary>
+    /// Перемещение к цели
+    /// </summary>
+    /// <param name="target">Позиция цели</param>
+    public void MoveTo(Vector2 target)
+    {
+        transform.position = Vector2.MoveTowards(transform.position, target, Time.deltaTime * movementSpeed);
+    }
 }

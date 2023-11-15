@@ -15,7 +15,7 @@ public enum Characteristics
 }
 
 
-[RequireComponent(typeof(Player))]
+[RequireComponent(typeof(Character))]
 
 
 /// <summary>
@@ -123,12 +123,12 @@ public class PlayerCharacteristics : MonoBehaviour
     /// <summary>
     /// Сохранённая ссылка на игрока
     /// </summary>
-    private Player player;
+    private Character player;
 
 
     private void Start()
     {
-        player = GetComponent<Player>();
+        player = GetComponent<Character>();
     }
 
 

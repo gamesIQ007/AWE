@@ -9,7 +9,7 @@ public class UIHPBar : MonoBehaviour
     /// <summary>
     /// Игрок
     /// </summary>
-    [SerializeField] private Player player;
+    [SerializeField] private Character player;
 
     /// <summary>
     /// Текст, отображающий количество здоровья
