@@ -41,19 +41,10 @@ public class EnemyAI : MonoBehaviour
     public AIBehaviour Behaviour { get { return aIBehaviour; } set { aIBehaviour = value; } }
 
     /// <summary>
-    /// Агент перемещения
-    /// </summary>
-    [SerializeField] private NavMeshAgent agent;
-
-    /// <summary>
     /// Индекс точки маршрута патрулирования
     /// </summary>
     [SerializeField] private int patrolPathNodeIndex = 0;
 
-    /// <summary>
-    /// Путь перемещения
-    /// </summary>
-    private NavMeshPath navMeshPath;
     /// <summary>
     /// Текущая точка перемещения
     /// </summary>
@@ -81,14 +72,12 @@ public class EnemyAI : MonoBehaviour
 
         FindMovementArea();
 
-        navMeshPath = new NavMeshPath();
         StartBehaviour(aIBehaviour);
     }
 
     private void Update()
     {
         UpdateAI();
-
     }
 
 
@@ -106,8 +95,7 @@ public class EnemyAI : MonoBehaviour
 
         if (aIBehaviour == AIBehaviour.PursuitTarget)
         {
-            agent.CalculatePath(target.transform.position, navMeshPath);
-            agent.SetPath(navMeshPath);
+            enemy.MoveTo(target.transform.position);
 
             /* переписать в атаку при приближении
             if (Vector3.Distance(transform.position, pursuitTarget.position) <= aimingDistance)
@@ -122,6 +110,8 @@ public class EnemyAI : MonoBehaviour
 
         if (aIBehaviour == AIBehaviour.Patrol)
         {
+            enemy.MoveTo(currentPathNode.transform.position);
+
             if (AgentReachedDestination())
             {
                 StartCoroutine(SetBehaviourOnTime(AIBehaviour.Idle, currentPathNode.IdleTime));
@@ -167,20 +157,9 @@ public class EnemyAI : MonoBehaviour
     {
         if (enemy.IsDead) return;
 
-        if (state == AIBehaviour.Idle)
-        {
-            agent.isStopped = true;
-        }
-
         if (state == AIBehaviour.Patrol)
         {
-            agent.isStopped = false;
             SetDestinationByPathNode(patrolPath.GetNextNode(ref patrolPathNodeIndex));
-        }
-
-        if (state == AIBehaviour.PursuitTarget)
-        {
-            agent.isStopped = false;
         }
 
         aIBehaviour = state;
@@ -213,8 +192,6 @@ public class EnemyAI : MonoBehaviour
     private void SetDestinationByPathNode(PatrolPathNode node)
     {
         currentPathNode = node;
-        agent.CalculatePath(currentPathNode.transform.position, navMeshPath);
-        agent.SetPath(navMeshPath);
     }
 
     /// <summary>
@@ -223,17 +200,9 @@ public class EnemyAI : MonoBehaviour
     /// <returns>Агент достиг точки назначения</returns>
     private bool AgentReachedDestination()
     {
-        if (agent.pathPending == false)
+        if (Vector2.Distance(transform.position, currentPathNode.transform.position) <= 0.5f)
         {
-            if (agent.remainingDistance <= agent.stoppingDistance)
-            {
-                if (agent.hasPath == false || agent.velocity.sqrMagnitude == 0.0f)
-                {
-                    return true;
-                }
-                return false;
-            }
-            return false;
+            return true;
         }
         return false;
     }

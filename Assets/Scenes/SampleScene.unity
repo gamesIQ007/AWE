@@ -8355,7 +8355,7 @@ MonoBehaviour:
   ChangeHitPoints:
     m_PersistentCalls:
       m_Calls: []
-  movementSpeed: 5
+  movementSpeed: 2
   damage: 5
   attackDistance: 1
   detectDistance: 0
@@ -8388,7 +8388,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aIBehaviour: 2
-  agent: {fileID: 0}
   patrolPathNodeIndex: 0
 --- !u!1 &512141263
 GameObject:
@@ -82676,7 +82675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe3133d889e06a14ab9469d6ac7a044a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1169615082}
   hpText: {fileID: 749080793}
 --- !u!114 &1149419886
 MonoBehaviour:
