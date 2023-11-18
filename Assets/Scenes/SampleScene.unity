@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 832aca55927460a4c88da64d7df95108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleTime: 2
+  idleTime: 0.5
 --- !u!4 &22555120
 Transform:
   m_ObjectHideFlags: 0
@@ -162,7 +162,7 @@ Transform:
   m_GameObject: {fileID: 22555118}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5, y: -0.48, z: 0}
+  m_LocalPosition: {x: 2.5, y: -0.41, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8096,7 +8096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 832aca55927460a4c88da64d7df95108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleTime: 2
+  idleTime: 0.5
 --- !u!4 &285387395
 Transform:
   m_ObjectHideFlags: 0
@@ -8289,9 +8289,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 397243698}
+  - component: {fileID: 397243700}
   - component: {fileID: 397243696}
   - component: {fileID: 397243697}
   - component: {fileID: 397243699}
+  - component: {fileID: 397243701}
+  - component: {fileID: 397243702}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -8355,10 +8358,10 @@ MonoBehaviour:
   ChangeHitPoints:
     m_PersistentCalls:
       m_Calls: []
-  movementSpeed: 2
+  movementSpeed: 0.1
   damage: 5
   attackDistance: 1
-  detectDistance: 0
+  detectDistance: 5
 --- !u!4 &397243698
 Transform:
   m_ObjectHideFlags: 0
@@ -8387,8 +8390,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 062c16c23a9582e4cb0afb7acb871908, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aIBehaviour: 2
+  aIBehaviour: 0
   patrolPathNodeIndex: 0
+--- !u!50 &397243700
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397243695}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 100
+  m_LinearDrag: 25
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!114 &397243701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397243695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc0e003ea4d4c824ea85121379d45870, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sr: {fileID: 1316308123}
+--- !u!114 &397243702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397243695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c282c1b943a1c54438b9dfdd0cbdae93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 2
+  delay: 0.1
 --- !u!1 &512141263
 GameObject:
   m_ObjectHideFlags: 0
@@ -82477,7 +82534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 832aca55927460a4c88da64d7df95108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleTime: 2
+  idleTime: 0.5
 --- !u!4 &926388023
 Transform:
   m_ObjectHideFlags: 0
@@ -82812,7 +82869,7 @@ Transform:
   m_GameObject: {fileID: 1169615071}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.15, y: 0, z: 0}
+  m_LocalPosition: {x: -7.75, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -83070,7 +83127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 832aca55927460a4c88da64d7df95108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleTime: 2
+  idleTime: 0.5
 --- !u!4 &1179250663
 Transform:
   m_ObjectHideFlags: 0

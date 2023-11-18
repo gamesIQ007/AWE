@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 //[RequireComponent(typeof(AmmoBag))]
 [RequireComponent(typeof(PlayerCharacteristics))]
-[RequireComponent(typeof(PlayerMeleeWeapon))]
+[RequireComponent(typeof(MeleeAttack))]
 [RequireComponent(typeof(AudioSource))]
 
 /// <summary>
@@ -41,8 +41,8 @@ public class Character : Destructible
     /// <summary>
     /// Оруюжие ближнего боя игрока
     /// </summary>
-    private PlayerMeleeWeapon playerMeleeWeapon;
-    public PlayerMeleeWeapon PlayerMeleeWeapon => playerMeleeWeapon;
+    private MeleeAttack playerMeleeWeapon;
+    public MeleeAttack PlayerMeleeWeapon => playerMeleeWeapon;
 		
     /// <summary>
     /// Сохранённая ссылка на сумку боеприпасов
@@ -65,7 +65,7 @@ public class Character : Destructible
         weapon = GetComponentInChildren<Weapon>();
         //weapons = new List<WeaponProperties>();
         characteristics = GetComponent<PlayerCharacteristics>();
-        playerMeleeWeapon = GetComponent<PlayerMeleeWeapon>();
+        playerMeleeWeapon = GetComponent<MeleeAttack>();
 
         maxHitPoints = characteristics.Hp;
         currentHitPoints = maxHitPoints;

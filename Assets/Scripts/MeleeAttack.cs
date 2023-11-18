@@ -6,7 +6,7 @@
 /// <summary>
 /// Оружие ближнего боя игрока
 /// </summary>
-public class PlayerMeleeWeapon : MonoBehaviour
+public class MeleeAttack : MonoBehaviour
 {
     /// <summary>
     /// Оружие ближнего боя

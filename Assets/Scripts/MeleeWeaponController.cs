@@ -9,7 +9,7 @@ public class MeleeWeaponController : MonoBehaviour
     /// <summary>
     /// Оружие ближнего боя игрока
     /// </summary>
-    private PlayerMeleeWeapon playerMeleeWeapon;
+    private MeleeAttack playerMeleeWeapon;
 
     /// <summary>
     /// Начальное вращение
@@ -47,6 +47,7 @@ public class MeleeWeaponController : MonoBehaviour
         if (player == null && dest != null)
         {
             dest.ApplyDamage(playerMeleeWeapon.Damage);
+            dest.GetComponent<KnockBack>().ApplyKnockBack(transform);
         }
     }
 
@@ -55,7 +56,7 @@ public class MeleeWeaponController : MonoBehaviour
     /// Инициализация атаки
     /// </summary>
     /// <param name="playerMeleeWeapon">Оружие ближнего боя игрока</param>
-    public void InitializeAttack(PlayerMeleeWeapon playerMeleeWeapon)
+    public void InitializeAttack(MeleeAttack playerMeleeWeapon)
     {
         this.playerMeleeWeapon = playerMeleeWeapon;
 

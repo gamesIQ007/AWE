@@ -1,7 +1,7 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 /// <summary>
-/// Базовый класс для синглтонов
+/// Р‘Р°Р·РѕРІС‹Р№ РєР»Р°СЃСЃ РґР»СЏ СЃРёРЅРіР»С‚РѕРЅРѕРІ
 /// </summary>
 [DisallowMultipleComponent]
 public abstract class SingletonBase<T> : MonoBehaviour where T : MonoBehaviour

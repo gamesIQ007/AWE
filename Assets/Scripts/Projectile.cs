@@ -171,6 +171,8 @@ public class Projectile : Entity
     private void ApplyDamage(Destructible destructible)
     {
         destructible.ApplyDamage(damage);
+
+        destructible.GetComponent<KnockBack>().ApplyKnockBack(transform);
     }
 
     /// <summary>

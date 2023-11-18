@@ -77,6 +77,11 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
+        if (aIBehaviour == AIBehaviour.Null)
+        {
+            return;
+        }
+
         UpdateAI();
     }
 
@@ -95,7 +100,7 @@ public class EnemyAI : MonoBehaviour
 
         if (aIBehaviour == AIBehaviour.PursuitTarget)
         {
-            enemy.MoveTo(target.transform.position);
+            enemy.MoveTo(target);
 
             /* переписать в атаку при приближении
             if (Vector3.Distance(transform.position, pursuitTarget.position) <= aimingDistance)
@@ -110,7 +115,7 @@ public class EnemyAI : MonoBehaviour
 
         if (aIBehaviour == AIBehaviour.Patrol)
         {
-            enemy.MoveTo(currentPathNode.transform.position);
+            enemy.MoveTo(currentPathNode.gameObject);
 
             if (AgentReachedDestination())
             {

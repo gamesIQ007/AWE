@@ -74,10 +74,10 @@ public class PatrolPath : MonoBehaviour
         Gizmos.color = Color.red;
         for (int i = 0; i < nodes.Length - 1; i++)
         {
-            Gizmos.DrawLine(nodes[i].transform.position + new Vector3(0, 0.5f, 0), nodes[i + 1].transform.position + new Vector3(0, 0.5f, 0));
+            Gizmos.DrawLine(nodes[i].transform.position, nodes[i + 1].transform.position);
         }
 
-        Gizmos.DrawLine(nodes[0].transform.position + new Vector3(0, 0.5f, 0), nodes[nodes.Length - 1].transform.position + new Vector3(0, 0.5f, 0));
+        Gizmos.DrawLine(nodes[0].transform.position, nodes[nodes.Length - 1].transform.position);
     }
 #endif
 }
