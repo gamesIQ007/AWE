@@ -102,15 +102,13 @@ public class EnemyAI : MonoBehaviour
         {
             enemy.MoveTo(target);
 
-            /* переписать в атаку при приближении
-            if (Vector3.Distance(transform.position, pursuitTarget.position) <= aimingDistance)
+            if (Vector3.Distance(transform.position, target.transform.position) <= enemy.AttackDistance)
             {
-                if (Vector3.Angle(pursuitTarget.position - transform.position, transform.forward) < 10)
+                if (enemy.MeleeAttack != null)
                 {
-                    agent.isStopped = true;
+                    enemy.MeleeAttack.Attack(target.transform.position);
                 }
-                alienSoldier.Fire(pursuitTarget.position + new Vector3(0, 1, 0));
-            }*/
+            }
         }
 
         if (aIBehaviour == AIBehaviour.Patrol)

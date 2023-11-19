@@ -7,9 +7,9 @@
 public class MeleeWeaponController : MonoBehaviour
 {
     /// <summary>
-    /// Оружие ближнего боя игрока
+    /// Оружие ближнего боя
     /// </summary>
-    private MeleeAttack playerMeleeWeapon;
+    private MeleeAttack meleeWeapon;
 
     /// <summary>
     /// Начальное вращение
@@ -30,23 +30,21 @@ public class MeleeWeaponController : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (timer > playerMeleeWeapon.Speed)
+        if (timer > meleeWeapon.Speed)
         {
             Destroy(gameObject);
         }
 
-        transform.localRotation = Quaternion.Lerp(startRotation, endRotation, timer / playerMeleeWeapon.Speed);
+        transform.localRotation = Quaternion.Lerp(startRotation, endRotation, timer / meleeWeapon.Speed);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Destructible dest = collision.GetComponent<Destructible>();
 
-        Character player = collision.GetComponent<Character>();
-
-        if (player == null && dest != null)
+        if (dest != null && dest != meleeWeapon.Attacker)
         {
-            dest.ApplyDamage(playerMeleeWeapon.Damage);
+            dest.ApplyDamage(meleeWeapon.Damage);
             dest.GetComponent<KnockBack>().ApplyKnockBack(transform);
         }
     }
@@ -55,10 +53,10 @@ public class MeleeWeaponController : MonoBehaviour
     /// <summary>
     /// Инициализация атаки
     /// </summary>
-    /// <param name="playerMeleeWeapon">Оружие ближнего боя игрока</param>
-    public void InitializeAttack(MeleeAttack playerMeleeWeapon)
+    /// <param name="meleeWeapon">Оружие ближнего боя игрока</param>
+    public void InitializeAttack(MeleeAttack meleeWeapon)
     {
-        this.playerMeleeWeapon = playerMeleeWeapon;
+        this.meleeWeapon = meleeWeapon;
 
         ComputeSwingRotations();
         
@@ -74,7 +72,7 @@ public class MeleeWeaponController : MonoBehaviour
     private void ComputeSwingRotations()
     {
         Quaternion rotation = transform.rotation;
-        startRotation = rotation * Quaternion.Euler(0, 0, -playerMeleeWeapon.SwingAngle);
-        endRotation = rotation * Quaternion.Euler(0, 0, playerMeleeWeapon.SwingAngle);
+        startRotation = rotation * Quaternion.Euler(0, 0, -meleeWeapon.SwingAngle);
+        endRotation = rotation * Quaternion.Euler(0, 0, meleeWeapon.SwingAngle);
     }
 }

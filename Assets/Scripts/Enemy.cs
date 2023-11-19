@@ -19,12 +19,19 @@ public class Enemy : Destructible
     /// Расстояние атаки
     /// </summary>
     [SerializeField] private float attackDistance;
+    public float AttackDistance => attackDistance;
 
     /// <summary>
     /// Расстояние обнаружения
     /// </summary>
     [SerializeField] private float detectDistance;
     public float DetectDistance => detectDistance;
+
+    /// <summary>
+    /// Атака ближнего боя
+    /// </summary>
+    [SerializeField] private MeleeAttack meleeAttack;
+    public MeleeAttack MeleeAttack => meleeAttack;
 
     /// <summary>
     /// Снаряд, которым атакует

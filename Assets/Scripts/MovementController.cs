@@ -51,7 +51,10 @@ public class MovementController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space))
         {
-            player.PlayerMeleeWeapon.Attack();
+            Vector3 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            point = new Vector3(point.x, point.y, 0);
+
+            player.MeleeAttack.Attack(point);
         }
 
         player.MovementControl = movementVector;

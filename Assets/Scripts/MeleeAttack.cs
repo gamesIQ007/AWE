@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 
 
-[RequireComponent(typeof(Character))]
-
 /// <summary>
-/// Оружие ближнего боя игрока
+/// Оружие ближнего боя
 /// </summary>
 public class MeleeAttack : MonoBehaviour
 {
@@ -42,9 +40,10 @@ public class MeleeAttack : MonoBehaviour
     public float SwingAngle => swingAngle;
 
     /// <summary>
-    /// Сохранённая ссылка на игрока
+    /// Сохранённая ссылка на атакующего
     /// </summary>
-    private Character player;
+    private Destructible attacker;
+    public Destructible Attacker => attacker;
 
     /// <summary>
     /// Таймер
@@ -54,7 +53,7 @@ public class MeleeAttack : MonoBehaviour
 
     private void Start()
     {
-        player = GetComponent<Character>();
+        attacker = GetComponent<Destructible>();
     }
 
     private void Update()
@@ -69,11 +68,11 @@ public class MeleeAttack : MonoBehaviour
     /// <summary>
     /// Атака
     /// </summary>
-    public void Attack()
+    public void Attack(Vector3 position)
     {
         if (timer <= 0)
         {
-            InstantiateAttack();
+            InstantiateAttack(position);
             timer = delay;
         }
     }
@@ -81,9 +80,9 @@ public class MeleeAttack : MonoBehaviour
     /// <summary>
     /// Создать атаку ближнего боя
     /// </summary>
-    private void InstantiateAttack()
+    private void InstantiateAttack(Vector3 position)
     {
-        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        Vector3 difference = position - transform.position;
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         
         transform.localRotation = Quaternion.identity;

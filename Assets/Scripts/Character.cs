@@ -41,8 +41,8 @@ public class Character : Destructible
     /// <summary>
     /// Оруюжие ближнего боя игрока
     /// </summary>
-    private MeleeAttack playerMeleeWeapon;
-    public MeleeAttack PlayerMeleeWeapon => playerMeleeWeapon;
+    private MeleeAttack meleeAttack;
+    public MeleeAttack MeleeAttack => meleeAttack;
 		
     /// <summary>
     /// Сохранённая ссылка на сумку боеприпасов
@@ -65,7 +65,7 @@ public class Character : Destructible
         weapon = GetComponentInChildren<Weapon>();
         //weapons = new List<WeaponProperties>();
         characteristics = GetComponent<PlayerCharacteristics>();
-        playerMeleeWeapon = GetComponent<MeleeAttack>();
+        meleeAttack = GetComponent<MeleeAttack>();
 
         maxHitPoints = characteristics.Hp;
         currentHitPoints = maxHitPoints;

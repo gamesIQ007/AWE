@@ -8295,6 +8295,7 @@ GameObject:
   - component: {fileID: 397243699}
   - component: {fileID: 397243701}
   - component: {fileID: 397243702}
+  - component: {fileID: 397243703}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -8360,8 +8361,9 @@ MonoBehaviour:
       m_Calls: []
   movementSpeed: 0.1
   damage: 5
-  attackDistance: 1
+  attackDistance: 2
   detectDistance: 5
+  meleeAttack: {fileID: 397243703}
 --- !u!4 &397243698
 Transform:
   m_ObjectHideFlags: 0
@@ -8390,7 +8392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 062c16c23a9582e4cb0afb7acb871908, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aIBehaviour: 0
+  aIBehaviour: 2
   patrolPathNodeIndex: 0
 --- !u!50 &397243700
 Rigidbody2D:
@@ -8444,8 +8446,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c282c1b943a1c54438b9dfdd0cbdae93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 2
+  force: 5
   delay: 0.1
+--- !u!114 &397243703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397243695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2be68409b1ccee41b4bac43d0374a5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 8874356844847858900, guid: 91f0cab1a54a8bc40ba0aff73820e702, type: 3}
+  delay: 1
+  damage: 5
+  speed: 0.1
+  swingAngle: 60
 --- !u!1 &512141263
 GameObject:
   m_ObjectHideFlags: 0
@@ -82791,6 +82810,7 @@ GameObject:
   - component: {fileID: 1169615077}
   - component: {fileID: 1169615079}
   - component: {fileID: 1169615081}
+  - component: {fileID: 1169615083}
   m_Layer: 0
   m_Name: Player Character
   m_TagString: Untagged
@@ -83098,6 +83118,20 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   audio: {fileID: 0}
+--- !u!114 &1169615083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1169615071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c282c1b943a1c54438b9dfdd0cbdae93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 5
+  delay: 0.1
 --- !u!1 &1179250661
 GameObject:
   m_ObjectHideFlags: 0
