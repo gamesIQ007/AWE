@@ -102,12 +102,15 @@ public class EnemyAI : MonoBehaviour
         {
             enemy.MoveTo(target);
 
-            if (Vector3.Distance(transform.position, target.transform.position) <= enemy.AttackDistance)
+            float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
+
+            if (distanceToTarget <= enemy.MeleeAttackDistance)
             {
-                if (enemy.MeleeAttack != null)
-                {
-                    enemy.MeleeAttack.Attack(target.transform.position);
-                }
+                enemy.AttackMeleeWeapon(target.transform.position);
+            }
+            if (enemy.Type == EnemyType.Shooter && distanceToTarget > enemy.MeleeAttackDistance && distanceToTarget <= enemy.ShootAttackDistance)
+            {
+                enemy.AttackDistanceWeapon(target.transform.position);
             }
         }
 
