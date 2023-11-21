@@ -8363,10 +8363,11 @@ MonoBehaviour:
   movementSpeed: 0.01
   damage: 5
   meleeAttackDistance: 1
-  shootAttackDistance: 3
+  shootAttackDistance: 10
   detectDistance: 5
   meleeAttack: {fileID: 397243703}
   projectile: {fileID: 7736845821195297427, guid: d8987ba628c361b488218bbdb4d3f862, type: 3}
+  reloadingTime: 1
 --- !u!4 &397243698
 Transform:
   m_ObjectHideFlags: 0

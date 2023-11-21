@@ -68,10 +68,20 @@ public class Enemy : Destructible
     [SerializeField] private Projectile projectile;
 
     /// <summary>
+    /// Время между атаками дальнего боя
+    /// </summary>
+    [SerializeField] private float reloadingTime;
+
+    /// <summary>
     /// Жив ли?
     /// </summary>
     private bool isDead;
     public bool IsDead => isDead;
+
+    /// <summary>
+    /// Таймер перезарядки
+    /// </summary>
+    private float reloadingTimer = 0;
 
     /// <summary>
     /// Направление движения
@@ -89,6 +99,14 @@ public class Enemy : Destructible
         base.Start();
 
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void Update()
+    {
+        if (reloadingTimer > 0)
+        {
+            reloadingTimer -= Time.deltaTime;
+        }
     }
 
 
@@ -126,6 +144,8 @@ public class Enemy : Destructible
 
     public void AttackDistanceWeapon(Vector3 attackPosition)
     {
+        if (reloadingTimer > 0) return;
+
         Vector3 difference = attackPosition - transform.position;
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         Quaternion rot = Quaternion.Euler(0, 0, rotationZ - 90.0f);
@@ -134,5 +154,7 @@ public class Enemy : Destructible
         GameObject obj = Instantiate(projectile.gameObject);
         obj.transform.position = transform.position;
         obj.transform.rotation = rot;
+
+        reloadingTimer = reloadingTime;
     }
 }

@@ -24,7 +24,7 @@ public class WeaponVisual : MonoBehaviour
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = transform.root.GetComponent<Rigidbody2D>();
     }
 
     private void Update()

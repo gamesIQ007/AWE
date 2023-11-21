@@ -6,11 +6,29 @@
 /// </summary>
 public enum Characteristics
 {
+    /// <summary>
+    /// Здоровье
+    /// </summary>
     HP,
+    /// <summary>
+    /// Сила
+    /// </summary>
     Strenght,
+    /// <summary>
+    /// Скорость
+    /// </summary>
     Speed,
+    /// <summary>
+    /// Выносливость
+    /// </summary>
     Stamina,
+    /// <summary>
+    /// Точность
+    /// </summary>
     Accuracy,
+    /// <summary>
+    /// Ловкость
+    /// </summary>
     Agility
 }
 
