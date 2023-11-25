@@ -26,6 +26,24 @@ public class WeaponProperties : ScriptableObject
     public Projectile ProjectilePrefab => projectilePrefab;
 
     /// <summary>
+    /// Максимальное количество патронов базовое
+    /// </summary>
+    [SerializeField] private int ammoCountMaxBase;
+    public int AmmoCountMaxBase => ammoCountMaxBase;
+
+    /// <summary>
+    /// Базовый урон
+    /// </summary>
+    [SerializeField] private int damageBase;
+    public int DamageBase => damageBase;
+
+    /// <summary>
+    /// Трата патронов за выстрел
+    /// </summary>
+    [SerializeField] private int wasteAmmoPerShot;
+    public int WasteAmmoPerShot => wasteAmmoPerShot;
+
+    /// <summary>
     /// Скорострельность
     /// </summary>
     [SerializeField] private float rateOfFire;

@@ -8352,7 +8352,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nickname: 
   indestructible: 0
-  maxHitPoints: 100
+  maxHitPoints: 10
   eventOnDeath:
     m_PersistentCalls:
       m_Calls: []

@@ -33,9 +33,6 @@ public enum Characteristics
 }
 
 
-[RequireComponent(typeof(Character))]
-
-
 /// <summary>
 /// Характеристики игрока
 /// </summary>

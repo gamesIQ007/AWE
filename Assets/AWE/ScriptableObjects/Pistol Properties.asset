@@ -15,5 +15,7 @@ MonoBehaviour:
   nickname: Pistol
   sprite: {fileID: 21300000, guid: fe9b0f3218478924a8815af7bdda610e, type: 3}
   projectilePrefab: {fileID: 7736845821195297427, guid: 6529aadf4f370d8489f523a7417006c5, type: 3}
+  damage: 5
+  wasteAmmoPerShot: 0
   rateOfFire: 0.25
   launchSFX: {fileID: 0}

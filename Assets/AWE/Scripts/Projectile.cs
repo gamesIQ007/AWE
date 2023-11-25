@@ -15,12 +15,6 @@ public class Projectile : Entity
     [Header("Свойства снаряда")]
 
     /// <summary>
-    /// Тип снаряда
-    /// </summary>
-    //[SerializeField] private AmmoType ammoType;
-    //public AmmoType AmmoType => ammoType;
-
-    /// <summary>
     /// Скорость снаряда
     /// </summary>
     [SerializeField] private float velocity;
@@ -31,25 +25,9 @@ public class Projectile : Entity
     [SerializeField] private float lifeTime;
 
     /// <summary>
-    /// Урон
-    /// </summary>
-    [SerializeField] private int damage;
-
-    /// <summary>
     /// Префаб посмертного эффекта
     /// </summary>
     //[SerializeField] private ImpactEffect impactEffectPrefab;
-
-    /// <summary>
-    /// Таймер
-    /// </summary>
-    private float timer = 0;
-
-    /// <summary>
-    /// Дестрактибл родителя
-    /// </summary>
-    private Destructible parent;
-    public Destructible Parent => parent;
 
     /// <summary>
     /// Признак самонаведения
@@ -76,6 +54,22 @@ public class Projectile : Entity
     /// Список дестрактиблов в зоне поражения
     /// </summary>
     List<Destructible> destructiblesInArea;
+
+    /// <summary>
+    /// Дестрактибл родителя
+    /// </summary>
+    private Destructible parent;
+    public Destructible Parent => parent;
+
+    /// <summary>
+    /// Урон
+    /// </summary>
+    private int damage;
+
+    /// <summary>
+    /// Таймер
+    /// </summary>
+    private float timer = 0;
 
 
     private void Start()
@@ -113,20 +107,23 @@ public class Projectile : Entity
         {
             Destructible dest = hit.collider.transform.root.GetComponent<Destructible>();
 
-            if (dest != null && dest != parent/* && isAreaDamage == false*/)
+            if (dest != parent)
             {
-                ApplyDamage(dest);
-            }
-
-            if (isAreaDamage)
-            {
-                for (int i = 0; i < destructiblesInArea.Count; i++)
+                if (dest != null && isAreaDamage == false)
                 {
-                    ApplyDamage(destructiblesInArea[i]);
+                    ApplyDamage(dest);
                 }
+
+                if (isAreaDamage)
+                {
+                    for (int i = 0; i < destructiblesInArea.Count; i++)
+                    {
+                        ApplyDamage(destructiblesInArea[i]);
+                    }
+                }
+
+                OnProjectileLifeEnd(hit.collider, hit.point);
             }
-                
-            OnProjectileLifeEnd(hit.collider, hit.point);
         }
 
         transform.position += new Vector3(step.x, step.y, 0);
@@ -150,12 +147,14 @@ public class Projectile : Entity
 
         
     /// <summary>
-    /// Установить родителя проджектайла
+    /// Задать свойства снаряда
     /// </summary>
     /// <param name="parent">Родитель</param>
-    public void SetParentShooter(Destructible parent)
+    /// <param name="damage">Урон</param>
+    public void SetProjectileSettings(Destructible parent, int damage)
     {
         this.parent = parent;
+        this.damage = damage;
 
         if (isHoming)
         {

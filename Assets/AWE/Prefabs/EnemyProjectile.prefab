@@ -84,7 +84,6 @@ MonoBehaviour:
   nickname: 
   velocity: 5
   lifeTime: 10
-  damage: 5
   isHoming: 0
   isAreaDamage: 0
   radius: 0

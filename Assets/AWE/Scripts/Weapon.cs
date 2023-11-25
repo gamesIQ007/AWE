@@ -69,7 +69,7 @@ public class Weapon : MonoBehaviour
         Projectile projectile = Instantiate(weaponProperties.ProjectilePrefab);
         projectile.transform.position = transform.position;
         projectile.transform.up = transform.right;
-        projectile.SetParentShooter(player);
+        projectile.SetProjectileSettings(player, weaponProperties.DamageBase);
 
         refireTimer = weaponProperties.RateOfFire;
 
