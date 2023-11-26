@@ -119,7 +119,7 @@ public class PlayerCharacteristics : MonoBehaviour
 
     // Доступ к характеристикам извне
     public int Hp => baseHp + (int)(hpPoints * hpModifier);
-    public int Strenght => baseStrenght + (int)(strenghtPoints * strenghtModifier);
+    public float Strenght => baseStrenght + strenghtPoints * strenghtModifier;
     public float Speed => baseSpeed + speedPoints * speedModifier;
     public int Stamina => baseStamina + (int)(staminaPoints * staminaModifier);
     public int Accuracy => baseAccuracy + (int)(accuracyPoints * accuracyModifier);

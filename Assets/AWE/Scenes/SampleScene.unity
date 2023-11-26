@@ -83048,7 +83048,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseHp: 100
-  baseStrenght: 0
+  baseStrenght: 1
   baseSpeed: 5
   baseStamina: 0
   baseAccuracy: 0
@@ -83060,7 +83060,7 @@ MonoBehaviour:
   accuracyPoints: 0
   agilityPoints: 0
   hpModifier: 10
-  strenghtModifier: 0
+  strenghtModifier: 0.1
   speedModifier: 0.5
   staminaModifier: 0
   accuracyModifier: 0

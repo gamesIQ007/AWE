@@ -62,7 +62,7 @@ public class Inventory : MonoBehaviour
 
         for (int i = 0; i < weapons.Length; i++)
         {
-            weapons[i].AmmoCountMax = weapons[i].WeaponProperties.AmmoCountMaxBase; // Прописать добавление в зависимости от способностей игрока
+            weapons[i].AmmoCountMax = (int)(weapons[i].WeaponProperties.AmmoCountMaxBase * player.Characteristics.Strenght);
         }
     }
 }
