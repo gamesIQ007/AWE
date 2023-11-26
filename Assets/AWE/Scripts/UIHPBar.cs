@@ -20,7 +20,7 @@ public class UIHPBar : MonoBehaviour
     private void Start()
     {
         player.ChangeHitPoints.AddListener(OnChangeHitPoints);
-        OnChangeHitPoints();
+        OnChangeHitPoints(player.HitPoints, player.transform.position);
     }
 
     private void OnDestroy()
@@ -32,7 +32,7 @@ public class UIHPBar : MonoBehaviour
     /// <summary>
     /// При изменении очков здоровья
     /// </summary>
-    private void OnChangeHitPoints()
+    private void OnChangeHitPoints(int damage, Vector2 position)
     {
         hpText.text = player.HitPoints.ToString();
     }

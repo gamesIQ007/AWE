@@ -34,13 +34,13 @@ public class Destructible : Entity
     /// <summary>
     /// Событие при изменении количества здоровья
     /// </summary>
-    public UnityEvent ChangeHitPoints;
+    public UnityEvent<int, Vector2> ChangeHitPoints;
 
 
     protected virtual void Start()
     {
         currentHitPoints = maxHitPoints;
-        ChangeHitPoints?.Invoke();
+        ChangeHitPoints?.Invoke(0, Vector2.zero);
     }
 
 
@@ -54,7 +54,7 @@ public class Destructible : Entity
 
         currentHitPoints -= damage;
 
-        ChangeHitPoints?.Invoke();
+        ChangeHitPoints?.Invoke(damage, transform.position);
 
         if (currentHitPoints <= 0)
         {
@@ -82,7 +82,7 @@ public class Destructible : Entity
         {
             currentHitPoints = maxHitPoints;
         }
-        ChangeHitPoints?.Invoke();
+        ChangeHitPoints?.Invoke(0, Vector2.zero);
     }
 
     /// <summary>

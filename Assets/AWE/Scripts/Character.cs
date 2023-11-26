@@ -69,7 +69,7 @@ public class Character : Destructible
 
         maxHitPoints = characteristics.Hp;
         currentHitPoints = maxHitPoints;
-        ChangeHitPoints?.Invoke();
+        ChangeHitPoints?.Invoke(0, Vector2.zero);
     }
 
     private void FixedUpdate()
@@ -123,6 +123,6 @@ public class Character : Destructible
 
         maxHitPoints = characteristics.Hp;
         currentHitPoints += maxHitPoints - prevMaxHP;
-        ChangeHitPoints?.Invoke();
+        ChangeHitPoints?.Invoke(0, Vector2.zero);
     }
 }

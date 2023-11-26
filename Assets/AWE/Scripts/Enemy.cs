@@ -36,7 +36,7 @@ public class Enemy : Destructible
     /// <summary>
     /// Урон
     /// </summary>
-    [SerializeField] private float damage;
+    [SerializeField] private int damage;
 
     /// <summary>
     /// Расстояние атаки ближнего боя
@@ -154,6 +154,7 @@ public class Enemy : Destructible
         GameObject obj = Instantiate(projectile.gameObject);
         obj.transform.position = transform.position;
         obj.transform.rotation = rot;
+        obj.GetComponent<Projectile>().SetProjectileSettings(this, damage);
 
         reloadingTimer = reloadingTime;
     }
