@@ -64,7 +64,7 @@ public class Weapon : MonoBehaviour
     {
         if (weaponProperties == null) return;
         if (CanFire == false) return;
-		//if (player.AmmoBag.TryTakeAmmo(weaponProperties.ProjectilePrefab.AmmoType, 1) == false) return;
+		if (player.Inventory.TryRemoveWeaponAmmo(weaponProperties, weaponProperties.WasteAmmoPerShot) == false) return;
 
         Projectile projectile = Instantiate(weaponProperties.ProjectilePrefab);
         projectile.transform.position = transform.position;

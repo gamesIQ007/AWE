@@ -11,7 +11,7 @@ public class Inventory : MonoBehaviour
     /// <summary>
     /// Информация об имеющемся оружии
     /// </summary>
-    public class Weapons
+    public class WeaponAndAmmo
     {
         /// <summary>
         /// Свойства оружия
@@ -38,8 +38,8 @@ public class Inventory : MonoBehaviour
     /// <summary>
     /// Имеющееся оружие
     /// </summary>
-    [SerializeField] private Weapons[] weapons;
-    public Weapons[] WeaponsInInventory => weapons;
+    [SerializeField] private WeaponAndAmmo[] weapons;
+    public WeaponAndAmmo[] WeaponsInInventory => weapons;
 
     /// <summary>
     /// Ссылка на игрока
@@ -50,19 +50,35 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         player = GetComponent<Character>();
+        RefreshAmmoCountMax();
     }
 
 
     /// <summary>
     /// Обновить максимальное количество боеприпасов
     /// </summary>
-    private void RefreshAmmoCountMax()
+    public void RefreshAmmoCountMax()
     {
         if (player == null) return;
 
         for (int i = 0; i < weapons.Length; i++)
         {
-            weapons[i].AmmoCountMax = (int)(weapons[i].WeaponProperties.AmmoCountMaxBase * player.Characteristics.Strenght);
+            weapons[i].AmmoCountMax = Mathf.RoundToInt(weapons[i].WeaponProperties.AmmoCountMaxBase * player.Characteristics.Strenght);
         }
+    }
+
+    public bool TryRemoveWeaponAmmo(WeaponProperties properties, int count)
+    {
+        for (int i = 0; i < weapons.Length; i++)
+        {
+            if (weapons[i].WeaponProperties != properties) continue;
+
+            if (weapons[i].AmmoCountCurrent < count) return false;
+
+            weapons[i].AmmoCountCurrent -= count;
+            return true;
+        }
+
+        return false;
     }
 }

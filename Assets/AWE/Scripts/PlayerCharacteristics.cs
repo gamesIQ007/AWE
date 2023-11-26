@@ -164,6 +164,7 @@ public class PlayerCharacteristics : MonoBehaviour
         if (characteristics == Characteristics.Strenght)
         {
             strenghtPoints += value;
+            player.Inventory.RefreshAmmoCountMax();
         }
         if (characteristics == Characteristics.Speed)
         {

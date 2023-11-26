@@ -39,6 +39,12 @@ public class Character : Destructible
     public PlayerCharacteristics Characteristics => characteristics;
 
     /// <summary>
+    /// Сохранённая ссылка на инвентарь
+    /// </summary>
+    private Inventory inventory;
+    public Inventory Inventory => inventory;
+
+    /// <summary>
     /// Оруюжие ближнего боя игрока
     /// </summary>
     private MeleeAttack meleeAttack;
@@ -56,6 +62,11 @@ public class Character : Destructible
     [HideInInspector] public new AudioSource audio;
 
 
+    private void Awake()
+    {
+        characteristics = GetComponent<PlayerCharacteristics>();
+    }
+
     protected override void Start()
     {
         base.Start();
@@ -64,9 +75,8 @@ public class Character : Destructible
         audio = GetComponent<AudioSource>();
         weapon = GetComponentInChildren<Weapon>();
         //weapons = new List<WeaponProperties>();
-        characteristics = GetComponent<PlayerCharacteristics>();
         meleeAttack = GetComponent<MeleeAttack>();
-
+        inventory = GetComponent<Inventory>();
         maxHitPoints = characteristics.Hp;
         currentHitPoints = maxHitPoints;
         ChangeHitPoints?.Invoke(0, Vector2.zero);
