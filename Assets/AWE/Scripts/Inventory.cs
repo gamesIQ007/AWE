@@ -67,6 +67,12 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Попробовать вычесть количество боеприпасов
+    /// </summary>
+    /// <param name="properties">Свойства оружия</param>
+    /// <param name="count">Количество</param>
+    /// <returns>Есть ли нужное количество боеприпасов</returns>
     public bool TryRemoveWeaponAmmo(WeaponProperties properties, int count)
     {
         for (int i = 0; i < weapons.Length; i++)
@@ -80,5 +86,26 @@ public class Inventory : MonoBehaviour
         }
 
         return false;
+    }
+
+    /// <summary>
+    /// Добавить боеприпасы
+    /// </summary>
+    /// <param name="properties">Свойства оружия</param>
+    /// <param name="count">Количество</param>
+    public void AddWeaponAmmo(WeaponProperties properties, int count)
+    {
+        for (int i = 0; i < weapons.Length; i++)
+        {
+            if (weapons[i].WeaponProperties == properties)
+            {
+                weapons[i].AmmoCountCurrent += count;
+
+                if (weapons[i].AmmoCountCurrent > weapons[i].AmmoCountMax)
+                {
+                    weapons[i].AmmoCountCurrent = weapons[i].AmmoCountMax;
+                }
+            }
+        }
     }
 }
