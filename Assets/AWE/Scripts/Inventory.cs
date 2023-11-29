@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Events;
+
 
 /// <summary>
 /// Инвентарь
@@ -34,6 +34,11 @@ public class Inventory : MonoBehaviour
         public int AmmoCountCurrent;
     }
 
+
+    /// <summary>
+    /// Ивент при изменении количества боеприпасов
+    /// </summary>
+    public UnityEvent<WeaponProperties, int> ChangeAmmoCount;
 
     /// <summary>
     /// Имеющееся оружие
@@ -82,6 +87,9 @@ public class Inventory : MonoBehaviour
             if (weapons[i].AmmoCountCurrent < count) return false;
 
             weapons[i].AmmoCountCurrent -= count;
+
+            ChangeAmmoCount?.Invoke(properties, weapons[i].AmmoCountCurrent);
+
             return true;
         }
 
@@ -105,6 +113,8 @@ public class Inventory : MonoBehaviour
                 {
                     weapons[i].AmmoCountCurrent = weapons[i].AmmoCountMax;
                 }
+
+                ChangeAmmoCount?.Invoke(properties, weapons[i].AmmoCountCurrent);
             }
         }
     }

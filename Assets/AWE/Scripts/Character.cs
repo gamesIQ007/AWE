@@ -65,6 +65,7 @@ public class Character : Destructible
     private void Awake()
     {
         characteristics = GetComponent<PlayerCharacteristics>();
+        inventory = GetComponent<Inventory>();
     }
 
     protected override void Start()
@@ -76,7 +77,6 @@ public class Character : Destructible
         weapon = GetComponentInChildren<Weapon>();
         //weapons = new List<WeaponProperties>();
         meleeAttack = GetComponent<MeleeAttack>();
-        inventory = GetComponent<Inventory>();
         maxHitPoints = characteristics.Hp;
         currentHitPoints = maxHitPoints;
         ChangeHitPoints?.Invoke(0, Vector2.zero);

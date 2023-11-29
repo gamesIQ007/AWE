@@ -76,6 +76,11 @@ public class EnemyAI : MonoBehaviour
         enemy.ChangeHitPoints.AddListener(OnChangeHitPoints);
     }
 
+    private void OnDestroy()
+    {
+        enemy.ChangeHitPoints.RemoveListener(OnChangeHitPoints);
+    }
+
     private void Update()
     {
         if (aIBehaviour == AIBehaviour.Null)
