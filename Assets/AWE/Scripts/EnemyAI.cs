@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.AI;
 
 
 [RequireComponent(typeof(Enemy))]
@@ -73,6 +72,8 @@ public class EnemyAI : MonoBehaviour
         FindMovementArea();
 
         StartBehaviour(aIBehaviour);
+
+        enemy.ChangeHitPoints.AddListener(OnChangeHitPoints);
     }
 
     private void Update()
@@ -233,5 +234,13 @@ public class EnemyAI : MonoBehaviour
                 }
             }
         }
+    }
+
+    /// <summary>
+    /// Действие при получении урона
+    /// </summary>
+    private void OnChangeHitPoints(int damage, Vector2 position)
+    {
+        StartBehaviour(AIBehaviour.PursuitTarget);
     }
 }
