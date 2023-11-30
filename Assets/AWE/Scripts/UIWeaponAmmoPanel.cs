@@ -59,7 +59,7 @@ public class UIWeaponAmmoPanel : MonoBehaviour
             blockProperties[i].WeaponAmmoBlock.transform.SetParent(weaponAmmoPanel.transform);
             blockProperties[i].WeaponAmmoBlock.SetAmmoCount(player.Inventory.WeaponsInInventory[i].AmmoCountCurrent);
             blockProperties[i].WeaponAmmoBlock.SetIcon(player.Inventory.WeaponsInInventory[i].WeaponProperties.Sprite);
-            blockProperties[i].WeaponAmmoBlock.enabled = player.Inventory.WeaponsInInventory[i].IsAvailable;
+            blockProperties[i].WeaponAmmoBlock.gameObject.SetActive(player.Inventory.WeaponsInInventory[i].IsAvailable);
         }
 
         //StartCoroutine(InitiateAmmoPanel());

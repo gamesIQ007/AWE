@@ -118,4 +118,72 @@ public class Inventory : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// Вернуть следующее оружие
+    /// </summary>
+    /// <param name="currentIndex">Индекс текущего оружия</param>
+    /// <param name="weaponProperties">Возвращаемые свойства следующего оружия</param>
+    /// <param name="newIndex">Возвращаемый новый индекс оружия</param>
+    public void ReturnNextWeapon(int currentIndex, out WeaponProperties weaponProperties, out int newIndex)
+    {
+        if (weapons.Length == 1)
+        {
+            weaponProperties = weapons[0].WeaponProperties;
+            newIndex = 0;
+        }
+        else
+        {
+            newIndex = currentIndex + 1;
+            if (newIndex == weapons.Length)
+            {
+                newIndex = 0;
+            }
+
+            while (weapons[newIndex].IsAvailable == false)
+            {
+                newIndex++;
+                if (newIndex == weapons.Length)
+                {
+                    newIndex = 0;
+                }
+            }
+
+            weaponProperties = weapons[newIndex].WeaponProperties;
+        }
+    }
+
+    /// <summary>
+    /// Вернуть предыдущее оружие
+    /// </summary>
+    /// <param name="currentIndex">Индекс предыдущего оружия</param>
+    /// <param name="weaponProperties">Возвращаемые свойства предыдущего оружия</param>
+    /// <param name="newIndex">Возвращаемый новый индекс оружия</param>
+    public void ReturnPrevWeapon(int currentIndex, out WeaponProperties weaponProperties, out int newIndex)
+    {
+        if (weapons.Length == 1)
+        {
+            weaponProperties = weapons[0].WeaponProperties;
+            newIndex = 0;
+        }
+        else
+        {
+            newIndex = currentIndex - 1;
+            if (newIndex < 0)
+            {
+                newIndex = weapons.Length - 1;
+            }
+
+            while (weapons[newIndex].IsAvailable == false)
+            {
+                newIndex--;
+                if (newIndex < 0)
+                {
+                    newIndex = weapons.Length - 1;
+                }
+            }
+
+            weaponProperties = weapons[newIndex].WeaponProperties;
+        }
+    }
 }

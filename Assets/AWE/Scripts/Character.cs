@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-//[RequireComponent(typeof(AmmoBag))]
 [RequireComponent(typeof(PlayerCharacteristics))]
 [RequireComponent(typeof(MeleeAttack))]
 [RequireComponent(typeof(AudioSource))]
@@ -13,11 +11,6 @@ using UnityEngine;
 public class Character : Destructible
 {
     /// <summary>
-    /// Список оружия
-    /// </summary>
-    //[SerializeField] private List<WeaponProperties> weapons;
-
-    /// <summary>
     /// Оружие в руках
     /// </summary>
     private Weapon weapon;
@@ -25,7 +18,7 @@ public class Character : Destructible
     /// <summary>
     /// Индекс активного оружия
     /// </summary>
-    //private int activeWeaponIndex = -1;
+    private int activeWeaponIndex = -1;
 
     /// <summary>
     /// Сохранённая ссылка на ригид
@@ -51,12 +44,6 @@ public class Character : Destructible
     public MeleeAttack MeleeAttack => meleeAttack;
 		
     /// <summary>
-    /// Сохранённая ссылка на сумку боеприпасов
-    /// </summary>
-    //private AmmoBag ammoBag;
-    //public AmmoBag AmmoBag => ammoBag;
-
-    /// <summary>
     /// Звуки
     /// </summary>
     [HideInInspector] public new AudioSource audio;
@@ -72,14 +59,15 @@ public class Character : Destructible
     {
         base.Start();
         rb = GetComponent<Rigidbody2D>();
-        //ammoBag = GetComponent<AmmoBag>();
         audio = GetComponent<AudioSource>();
         weapon = GetComponentInChildren<Weapon>();
-        //weapons = new List<WeaponProperties>();
         meleeAttack = GetComponent<MeleeAttack>();
         maxHitPoints = characteristics.Hp;
         currentHitPoints = maxHitPoints;
         ChangeHitPoints?.Invoke(0, Vector2.zero);
+
+        weapon.SetProperties(inventory.WeaponsInInventory[0].WeaponProperties);
+        activeWeaponIndex = 0;
     }
 
     private void FixedUpdate()
@@ -106,6 +94,26 @@ public class Character : Destructible
         weapon.SetProperties(weapons[activeWeaponIndex]);
     }*/
 
+    /// <summary>
+    /// Переключиться на следующее оружие
+    /// </summary>
+    public void SwitchOnNextWeapon()
+    {
+        WeaponProperties properties;
+        inventory.ReturnNextWeapon(activeWeaponIndex, out properties, out activeWeaponIndex);
+        weapon.SetProperties(properties);
+    }
+
+    /// <summary>
+    /// Переключиться на предыдущее оружие
+    /// </summary>
+    public void SwitchOnPrevWeapon()
+    {
+        WeaponProperties properties;
+        inventory.ReturnPrevWeapon(activeWeaponIndex, out properties, out activeWeaponIndex);
+        weapon.SetProperties(properties);
+    }
+
 
     /// <summary>
     /// Стрельба
@@ -127,6 +135,9 @@ public class Character : Destructible
         SetActiveWeapon(weapons[activeWeaponIndex]);
     }*/
 
+    /// <summary>
+    /// Изменение характеристик HP
+    /// </summary>
     public void HpCharacteristicChanged()
     {
         int prevMaxHP = maxHitPoints;
