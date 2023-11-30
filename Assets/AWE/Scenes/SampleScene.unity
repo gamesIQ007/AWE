@@ -83422,6 +83422,10 @@ MonoBehaviour:
     IsAvailable: 1
     AmmoCountMax: 0
     AmmoCountCurrent: 20
+  - WeaponProperties: {fileID: 11400000, guid: 7bc4ac2feefad8e40bc546ba18ddbb9a, type: 2}
+    IsAvailable: 1
+    AmmoCountMax: 0
+    AmmoCountCurrent: 50
 --- !u!1 &1179250661
 GameObject:
   m_ObjectHideFlags: 0
