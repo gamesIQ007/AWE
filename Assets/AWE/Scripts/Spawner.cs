@@ -3,12 +3,12 @@ using UnityEngine;
 
 
 /// <summary>
-/// Спавнер врагов
+/// Спавнер
 /// </summary>
-public class EnemySpawner : MonoBehaviour
+public class Spawner : MonoBehaviour
 {
     /// <summary>
-    /// Типа запуска следующего спавна
+    /// Типы запуска следующего спавна
     /// </summary>
     public enum SpawnType
     {
@@ -23,15 +23,15 @@ public class EnemySpawner : MonoBehaviour
     }
 
     /// <summary>
-    /// Класс сквада врагов
+    /// Класс пачки спавна
     /// </summary>
     [Serializable]
-    private class Squad
+    private class SpawnPack
     {
         /// <summary>
-        /// Префаб врага
+        /// Префаб для спавна
         /// </summary>
-        public Enemy EnemyPrefab;
+        public GameObject SpawnPrefab;
         /// <summary>
         /// Количество
         /// </summary>
@@ -51,14 +51,14 @@ public class EnemySpawner : MonoBehaviour
     }
 
     /// <summary>
-    /// Сквады врагов
+    /// Пачки спавна
     /// </summary>
-    [SerializeField] private Squad[] squads;
+    [SerializeField] private SpawnPack[] spawnPacks;
 
     /// <summary>
-    /// Индекс текущего сквада врагов
+    /// Индекс текущей пачки спавна
     /// </summary>
-    private int currentSquad = -1;
+    private int currentPack = -1;
 
     /// <summary>
     /// Время текущего спавна
@@ -83,7 +83,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        if (squads.Length == 0)
+        if (spawnPacks.Length == 0)
         {
             readyToWork = false;
         }
@@ -101,36 +101,39 @@ public class EnemySpawner : MonoBehaviour
         if (readyToWork && readyToNextSpawn)
         {
             // Запустить следующий спавн
-            currentSquad++;
+            currentPack++;
 
             // есть ли что запускать дальше
-            if (currentSquad > squads.Length - 1)
+            if (currentPack > spawnPacks.Length - 1)
             {
                 readyToNextSpawn = false;
                 readyToWork = false;
                 return;
             }
 
-            for (int i = 0; i < squads[currentSquad].Count; i++)
+            for (int i = 0; i < spawnPacks[currentPack].Count; i++)
             {
-                Enemy e = Instantiate(squads[currentSquad].EnemyPrefab);
-                e.transform.position = squads[currentSquad].SpawnArea.GetRandomInsideZone();
+                GameObject go = Instantiate(spawnPacks[currentPack].SpawnPrefab);
+                go.transform.position = spawnPacks[currentPack].SpawnArea.GetRandomInsideZone();
                 // задать поведение на преследование игрока
 
-                if (squads[currentSquad].SpawnType == SpawnType.SpawnByDeath)
+                if (spawnPacks[currentPack].SpawnType == SpawnType.SpawnByDeath)
                 {
-                    e.EventOnDeath.AddListener(OnEnemyDeath);
-                    // добавить отписку от этого события. Может всех заспавленных сохранять в массив и при окончании волны отписываться
+                    if (go.GetComponent<Enemy>())
+                    {
+                        go.GetComponent<Enemy>().EventOnDeath.AddListener(OnEnemyDeath);
+                        // добавить отписку от этого события. Может всех заспавленных сохранять в массив и при окончании волны отписываться
+                    }
                 }
             }
 
-            if (squads[currentSquad].SpawnType == SpawnType.SpawnByTime)
+            if (spawnPacks[currentPack].SpawnType == SpawnType.SpawnByTime)
             {
-                currentSpawnTime = squads[currentSquad].SpawnTime;
+                currentSpawnTime = spawnPacks[currentPack].SpawnTime;
             }
-            if (squads[currentSquad].SpawnType == SpawnType.SpawnByDeath)
+            if (spawnPacks[currentPack].SpawnType == SpawnType.SpawnByDeath)
             {
-                enemyCount = squads[currentSquad].Count;
+                enemyCount = spawnPacks[currentPack].Count;
             }
 
             readyToNextSpawn = false;
@@ -138,7 +141,7 @@ public class EnemySpawner : MonoBehaviour
 
         if (readyToWork && readyToNextSpawn == false)
         {
-            if (squads[currentSquad].SpawnType == SpawnType.SpawnByTime)
+            if (spawnPacks[currentPack].SpawnType == SpawnType.SpawnByTime)
             {
                 currentSpawnTime -= Time.deltaTime;
                 if (currentSpawnTime <= 0)
@@ -157,7 +160,7 @@ public class EnemySpawner : MonoBehaviour
     {
         enemyCount--;
 
-        if (squads[currentSquad].SpawnType == SpawnType.SpawnByDeath && enemyCount == 0)
+        if (spawnPacks[currentPack].SpawnType == SpawnType.SpawnByDeath && enemyCount == 0)
         {
             readyToNextSpawn = true;
         }

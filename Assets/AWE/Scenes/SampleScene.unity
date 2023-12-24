@@ -82803,7 +82803,7 @@ GameObject:
   - component: {fileID: 1071688276}
   - component: {fileID: 1071688275}
   m_Layer: 0
-  m_Name: EnemySpawner
+  m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82821,17 +82821,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4723bfe4659063a4e9fbe07218a34df0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  squads:
-  - EnemyPrefab: {fileID: 665705008266806382, guid: eb6fb86e6e18e7342aec6a38d8ed2036, type: 3}
+  spawnPacks:
+  - SpawnPrefab: {fileID: 9003343324600949687, guid: 1892c808adaabd54c9a571b9fd2b659a, type: 3}
     Count: 1
     SpawnArea: {fileID: 1071688276}
     SpawnType: 0
-    SpawnTime: 10
-  - EnemyPrefab: {fileID: 665705008266806382, guid: eb6fb86e6e18e7342aec6a38d8ed2036, type: 3}
-    Count: 3
+    SpawnTime: 3
+  - SpawnPrefab: {fileID: 4641464547183196274, guid: eb6fb86e6e18e7342aec6a38d8ed2036, type: 3}
+    Count: 1
+    SpawnArea: {fileID: 1071688276}
+    SpawnType: 1
+    SpawnTime: 5
+  - SpawnPrefab: {fileID: 9003343324600949687, guid: 1892c808adaabd54c9a571b9fd2b659a, type: 3}
+    Count: 1
     SpawnArea: {fileID: 1071688276}
     SpawnType: 0
-    SpawnTime: 10
+    SpawnTime: 5
 --- !u!114 &1071688276
 MonoBehaviour:
   m_ObjectHideFlags: 0
