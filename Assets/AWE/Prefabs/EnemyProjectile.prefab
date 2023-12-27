@@ -82,7 +82,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nickname: 
-  velocity: 5
+  velocity: 10
   lifeTime: 10
   isHoming: 0
   isAreaDamage: 0

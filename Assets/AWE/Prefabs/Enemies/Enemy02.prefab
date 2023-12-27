@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1249645752152830118}
   - component: {fileID: 6431020015027001959}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Enemy02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,7 +100,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.45
 --- !u!114 &665705008266806382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nickname: 
   indestructible: 0
-  maxHitPoints: 10
+  maxHitPoints: 20
   eventOnDeath:
     m_PersistentCalls:
       m_Calls: []
@@ -123,10 +123,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   type: 1
-  movementSpeed: 0.01
+  movementSpeed: 0.1
   damage: 5
   meleeAttackDistance: 1
-  shootAttackDistance: 5
+  shootAttackDistance: 10
   detectDistance: 5
   meleeAttack: {fileID: 6431020015027001959}
   projectile: {fileID: 7736845821195297427, guid: d8987ba628c361b488218bbdb4d3f862, type: 3}
@@ -262,7 +262,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f79bcf4e99f47ce479f04d942fb94ab1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d3136476833ee184fac37c4366864ceb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

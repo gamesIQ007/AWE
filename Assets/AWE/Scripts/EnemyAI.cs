@@ -143,7 +143,7 @@ public class EnemyAI : MonoBehaviour
 
             if (target == null) return;
         }
-
+        Debug.Log(Vector2.Distance(transform.position, target.transform.position) + " " + enemy.DetectDistance);
         if (Vector2.Distance(transform.position, target.transform.position) <= enemy.DetectDistance)
         {
             /* засунуть условие проверки видна ли цель ||*/
@@ -257,6 +257,8 @@ public class EnemyAI : MonoBehaviour
     /// </summary>
     private void OnChangeHitPoints(int damage, Vector2 position)
     {
+        if (enemy.MaxHitPoints == enemy.HitPoints) return;
+        
         StartBehaviour(AIBehaviour.PursuitTarget);
     }
 }
