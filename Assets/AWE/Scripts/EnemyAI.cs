@@ -143,11 +143,11 @@ public class EnemyAI : MonoBehaviour
 
             if (target == null) return;
         }
-        Debug.Log(Vector2.Distance(transform.position, target.transform.position) + " " + enemy.DetectDistance);
+        
         if (Vector2.Distance(transform.position, target.transform.position) <= enemy.DetectDistance)
         {
             /* засунуть условие проверки видна ли цель ||*/
-            RaycastHit hit;
+            //RaycastHit hit;
 
             /*Debug.DrawLine(point, points[i], Color.blue);
             if (Physics.Raycast(point, (points[i] - point).normalized, out hit, viewDistance * 2))

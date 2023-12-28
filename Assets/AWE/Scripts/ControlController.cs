@@ -5,7 +5,7 @@
 /// <summary>
 /// Класс для управления игроком
 /// </summary>
-public class MovementController : MonoBehaviour
+public class ControlController : MonoBehaviour
 {
     /// <summary>
     /// Частота смены оружия
@@ -13,11 +13,20 @@ public class MovementController : MonoBehaviour
     [SerializeField] private float changeWeaponTime;
 
     /// <summary>
+    /// Панель с меню паузы
+    /// </summary>
+    [SerializeField] private PauseMenuPanel pauseMenu;
+
+    /// <summary>
     /// Ссылка на игрока
     /// </summary>
     private Character player;
 
+    /// <summary>
+    /// Время между сменой оружия
+    /// </summary>
     private float changeWeaponTimer = 0;
+
 
 
     private void Start()
@@ -81,6 +90,11 @@ public class MovementController : MonoBehaviour
                 player.SwitchOnPrevWeapon();
                 changeWeaponTimer = changeWeaponTime;
             }
+        }
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            pauseMenu.OnButtonShowPause();
         }
 
         player.MovementControl = movementVector;
