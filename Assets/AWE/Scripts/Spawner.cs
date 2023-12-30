@@ -56,6 +56,11 @@ public class Spawner : MonoBehaviour
     [SerializeField] private SpawnPack[] spawnPacks;
 
     /// <summary>
+    /// Эффект при спавне
+    /// </summary>
+    [SerializeField] private ImpactEffect impactEffect;
+
+    /// <summary>
     /// Индекс текущей пачки спавна
     /// </summary>
     private int currentPack = -1;
@@ -124,6 +129,12 @@ public class Spawner : MonoBehaviour
                         go.GetComponent<Enemy>().EventOnDeath.AddListener(OnEnemyDeath);
                         // добавить отписку от этого события. Может всех заспавленных сохранять в массив и при окончании волны отписываться
                     }
+                }
+
+                // Спавним эффект
+                if (impactEffect != null)
+                {
+                    Instantiate(impactEffect, go.transform);
                 }
             }
 
