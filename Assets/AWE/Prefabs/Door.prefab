@@ -182,7 +182,9 @@ MonoBehaviour:
   closedDoor: {fileID: 7958750893904153732}
   openDoorIndicator: {fileID: 7173828619755426707}
   closedDoorIndicator: {fileID: 6088124810067311844}
-  doorIsOpen: 1
+  openingEffect: {fileID: 4431193933181032071, guid: b1503dd281b96154a9d00c72a53818e9, type: 3}
+  closingEffect: {fileID: 4431193933181032071, guid: 06c5346072533fc4bb216bfaba7c9ab8, type: 3}
+  doorIsOpen: 0
 --- !u!1 &6088124810067311844
 GameObject:
   m_ObjectHideFlags: 0

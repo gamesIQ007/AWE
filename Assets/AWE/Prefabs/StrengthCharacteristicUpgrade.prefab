@@ -261,7 +261,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characteristic: 1
   countPoints: 1
-  impactEffect: {fileID: 0}
+  impactEffect: {fileID: 6095671489086215456, guid: b98d3d7dec1ae064ea0b4d0035bcd5e7, type: 3}
 --- !u!1 &7950532967956158372
 GameObject:
   m_ObjectHideFlags: 0

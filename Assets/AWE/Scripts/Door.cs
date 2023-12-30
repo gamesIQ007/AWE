@@ -27,6 +27,15 @@ public class Door : MonoBehaviour
     /// </summary>
     [SerializeField] private GameObject closedDoorIndicator;
 
+    /// <summary>
+    /// Эффект при открытии двери
+    /// </summary>
+    [SerializeField] private ImpactEffect openingEffect;
+    /// <summary>
+    /// Эффект при закрытии двери
+    /// </summary>
+    [SerializeField] private ImpactEffect closingEffect;
+
     [Header("Settings")]
     /// <summary>
     /// Статус двери
@@ -49,6 +58,10 @@ public class Door : MonoBehaviour
         {
             closedDoor.SetActive(false);
             openDoor.SetActive(true);
+            if (openingEffect != null)
+            {
+                Instantiate(openingEffect, transform);
+            }
         }
     }
 
@@ -60,6 +73,10 @@ public class Door : MonoBehaviour
         {
             openDoor.SetActive(false);
             closedDoor.SetActive(true);
+            if (closingEffect != null)
+            {
+                Instantiate(closingEffect, transform);
+            }
         }
     }
 

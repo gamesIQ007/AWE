@@ -118,23 +118,26 @@ public class Spawner : MonoBehaviour
 
             for (int i = 0; i < spawnPacks[currentPack].Count; i++)
             {
-                GameObject go = Instantiate(spawnPacks[currentPack].SpawnPrefab);
-                go.transform.position = spawnPacks[currentPack].SpawnArea.GetRandomInsideZone();
-                // задать поведение на преследование игрока
-
-                if (spawnPacks[currentPack].SpawnType == SpawnType.SpawnByDeath)
+                if (spawnPacks[currentPack].SpawnPrefab != null)
                 {
-                    if (go.GetComponent<Enemy>())
+                    GameObject go = Instantiate(spawnPacks[currentPack].SpawnPrefab);
+                    go.transform.position = spawnPacks[currentPack].SpawnArea.GetRandomInsideZone();
+                    // задать поведение на преследование игрока
+
+                    if (spawnPacks[currentPack].SpawnType == SpawnType.SpawnByDeath)
                     {
-                        go.GetComponent<Enemy>().EventOnDeath.AddListener(OnEnemyDeath);
-                        // добавить отписку от этого события. Может всех заспавленных сохранять в массив и при окончании волны отписываться
+                        if (go.GetComponent<Enemy>())
+                        {
+                            go.GetComponent<Enemy>().EventOnDeath.AddListener(OnEnemyDeath);
+                            // добавить отписку от этого события. Может всех заспавленных сохранять в массив и при окончании волны отписываться
+                        }
                     }
-                }
 
-                // Спавним эффект
-                if (impactEffect != null)
-                {
-                    Instantiate(impactEffect, go.transform);
+                    // Спавним эффект
+                    if (impactEffect != null)
+                    {
+                        Instantiate(impactEffect, go.transform);
+                    }
                 }
             }
 

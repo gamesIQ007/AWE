@@ -19,4 +19,4 @@ MonoBehaviour:
   damageBase: 10
   wasteAmmoPerShot: 1
   rateOfFire: 0.1
-  launchSFX: {fileID: 0}
+  launchSFX: {fileID: 8300000, guid: a8adce45cc8b6764b9a1c24d8c15b660, type: 3}
