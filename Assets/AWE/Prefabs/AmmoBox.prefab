@@ -178,4 +178,4 @@ MonoBehaviour:
   ammoPacks:
   - Properties: {fileID: 11400000, guid: cdc17d2d7fef4684999d3a030ed2db6f, type: 2}
     Count: 20
-  impactEffect: {fileID: 0}
+  impactEffect: {fileID: 6095671489086215456, guid: 68fcef96cda7d7242b00ee592e8029ed, type: 3}

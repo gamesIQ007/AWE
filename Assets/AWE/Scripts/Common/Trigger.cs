@@ -17,7 +17,12 @@ public class Trigger : MonoBehaviour
     /// </summary>
     [SerializeField] private bool oneUseTrigger = false;
 
-    
+    /// <summary>
+    /// Эффект при спавне
+    /// </summary>
+    [SerializeField] private ImpactEffect impactEffect;
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Character player = collision.GetComponent<Character>();
@@ -25,9 +30,16 @@ public class Trigger : MonoBehaviour
         if (player != null)
         {
             activateTrigger.Invoke();
+
+            // Спавним эффект
+            if (impactEffect != null)
+            {
+                Instantiate(impactEffect);
+            }
+
             if (oneUseTrigger)
             {
-                Destroy(gameObject);
+                GetComponent<BoxCollider2D>().enabled = false;
             }
         }
     }
