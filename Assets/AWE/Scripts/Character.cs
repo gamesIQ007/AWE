@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(PlayerCharacteristics))]
@@ -10,6 +11,11 @@
 /// </summary>
 public class Character : Destructible
 {
+    /// <summary>
+    /// Событие при изменении количества брони
+    /// </summary>
+    public UnityEvent ChangeArmorPoints;
+
     /// <summary>
     /// Оружие в руках
     /// </summary>
@@ -36,6 +42,18 @@ public class Character : Destructible
     /// </summary>
     private Inventory inventory;
     public Inventory Inventory => inventory;
+
+    /// <summary>
+    /// Броня
+    /// </summary>
+    private int armor;
+    public int Armor => armor;
+
+    /// <summary>
+    /// Максимальное количество брони
+    /// </summary>
+    private int maxArmorPoints;
+    public int MaxArmorPoints => maxArmorPoints;
 
     /// <summary>
     /// Оруюжие ближнего боя игрока
@@ -65,6 +83,8 @@ public class Character : Destructible
         maxHitPoints = characteristics.Hp;
         currentHitPoints = maxHitPoints;
         ChangeHitPoints?.Invoke(0, Vector2.zero);
+        maxArmorPoints = characteristics.Hp;
+        ChangeArmorPoints?.Invoke();
 
         weapon.SetProperties(inventory.WeaponsInInventory[0].WeaponProperties);
         activeWeaponIndex = 0;
@@ -73,6 +93,38 @@ public class Character : Destructible
     private void FixedUpdate()
     {
         UpdateRigitBody();
+    }
+
+
+    /// <summary>
+    /// Перезаписанное применение урона
+    /// </summary>
+    /// <param name="damage"></param>
+    public override void ApplyDamage(int damage)
+    {
+        if (indestructible) return;
+
+        if (armor >= damage)
+        {
+            armor -= damage;
+            ChangeArmorPoints?.Invoke();
+            return;
+        }
+        else
+        {
+            damage -= armor;
+            armor = 0;
+            ChangeArmorPoints?.Invoke();
+
+            currentHitPoints -= damage;
+
+            ChangeHitPoints?.Invoke(damage, transform.position);
+
+            if (currentHitPoints <= 0)
+            {
+                OnDeath();
+            }
+        }
     }
 
 
@@ -143,7 +195,22 @@ public class Character : Destructible
         int prevMaxHP = maxHitPoints;
 
         maxHitPoints = characteristics.Hp;
+        maxArmorPoints = characteristics.Hp;
         currentHitPoints += maxHitPoints - prevMaxHP;
         ChangeHitPoints?.Invoke(0, Vector2.zero);
+    }
+
+    /// <summary>
+    /// Добавление брони
+    /// </summary>
+    /// <param name="addArmorPoints">Количество добавляемой брони</param>
+    public void AddArmorPoints(int addArmorPoints)
+    {
+        armor += addArmorPoints;
+        if (armor > maxArmorPoints)
+        {
+            armor = maxArmorPoints;
+        }
+        ChangeArmorPoints?.Invoke();
     }
 }

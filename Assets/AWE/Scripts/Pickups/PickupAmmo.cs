@@ -1,35 +1,35 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 
 /// <summary>
-/// Подбираемый предмет - боеприпасы
+/// РџРѕРґР±РёСЂР°РµРјС‹Р№ РїСЂРµРґРјРµС‚ - Р±РѕРµРїСЂРёРїР°СЃС‹
 /// </summary>
 public class PickupAmmo : Pickup
 {
     [System.Serializable]
     /// <summary>
-    /// Пак боеприпасов
+    /// РџР°Рє Р±РѕРµРїСЂРёРїР°СЃРѕРІ
     /// </summary>
     private class AmmoPack
     {
         /// <summary>
-        /// Свойства оружия
+        /// РЎРІРѕР№СЃС‚РІР° РѕСЂСѓР¶РёСЏ
         /// </summary>
         public WeaponProperties Properties;
         /// <summary>
-        /// Количество боеприпасов
+        /// РљРѕР»РёС‡РµСЃС‚РІРѕ Р±РѕРµРїСЂРёРїР°СЃРѕРІ
         /// </summary>
         public int Count;
     }
 
 
     /// <summary>
-    /// Паки боеприпасов
+    /// РџР°РєРё Р±РѕРµРїСЂРёРїР°СЃРѕРІ
     /// </summary>
     [SerializeField] private AmmoPack[] ammoPacks;
 
     /// <summary>
-    /// Эффект при подборе
+    /// Р­С„С„РµРєС‚ РїСЂРё РїРѕРґР±РѕСЂРµ
     /// </summary>
     [SerializeField] private GameObject impactEffect;
 

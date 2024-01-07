@@ -1,18 +1,18 @@
-п»їusing UnityEngine;
+using UnityEngine;
 
 
 /// <summary>
-/// РџРѕРґР±РёСЂР°РµРјС‹Р№ РїСЂРµРґРјРµС‚ - Р°РїС‚РµС‡РєР°
+/// Подбираемый предмет - броня
 /// </summary>
-public class PickupMedkit : Pickup
+public class PickupArmor : Pickup
 {
     /// <summary>
-    /// РљРѕР»РёС‡РµСЃС‚РІРѕ РґРѕР±Р°РІР»СЏРµРјРѕРіРѕ Р·РґРѕСЂРѕРІСЊСЏ
+    /// Количество добавляемой брони
     /// </summary>
-    [SerializeField] private int addHitPoints;
+    [SerializeField] private int addArmorPoints;
 
     /// <summary>
-    /// Р­С„С„РµРєС‚ РїСЂРё РїРѕРґР±РѕСЂРµ
+    /// Эффект при подборе
     /// </summary>
     [SerializeField] private GameObject impactEffect;
 
@@ -25,7 +25,7 @@ public class PickupMedkit : Pickup
 
         if (player != null)
         {
-            player.AddHitPoints(addHitPoints);
+            player.AddArmorPoints(addArmorPoints);
 
             if (impactEffect != null)
             {

@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+
 /// <summary>
 /// Уничтожаемый объект. То, что может иметь хитпоинты.
 /// </summary>
@@ -10,7 +11,7 @@ public class Destructible : Entity
     /// <summary>
     /// Объект игнорирует повреждения.
     /// </summary>
-    [SerializeField] private bool indestructible;
+    [SerializeField] protected bool indestructible;
     public bool IsIndestructible => indestructible;
 
     /// <summary>
