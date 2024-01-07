@@ -142,6 +142,10 @@ public class Enemy : Destructible
         }
     }
 
+    /// <summary>
+    /// Атаковать оружием дальнего боя
+    /// </summary>
+    /// <param name="attackPosition"></param>
     public void AttackDistanceWeapon(Vector3 attackPosition)
     {
         if (reloadingTimer > 0) return;

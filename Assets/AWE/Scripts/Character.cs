@@ -89,6 +89,7 @@ public class Character : Destructible
         rb.velocity = new Vector2(MovementControl.x * characteristics.Speed, MovementControl.y * characteristics.Speed);
     }
 
+
     /*private void SetActiveWeapon(WeaponProperties properties)
     {
         weapon.SetProperties(weapons[activeWeaponIndex]);
@@ -113,7 +114,6 @@ public class Character : Destructible
         inventory.ReturnPrevWeapon(activeWeaponIndex, out properties, out activeWeaponIndex);
         weapon.SetProperties(properties);
     }
-
 
     /// <summary>
     /// Стрельба
