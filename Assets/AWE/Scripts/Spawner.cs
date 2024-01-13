@@ -88,15 +88,7 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
-        if (spawnPacks.Length == 0)
-        {
-            readyToWork = false;
-        }
-        else
-        {
-            readyToWork = true;
-            readyToNextSpawn = true;
-        }
+        PrepareToStart();
     }
 
     private void Update()
@@ -178,5 +170,31 @@ public class Spawner : MonoBehaviour
         {
             readyToNextSpawn = true;
         }
+    }
+
+    /// <summary>
+    /// Подготовка к запуску
+    /// </summary>
+    private void PrepareToStart()
+    {
+        if (spawnPacks.Length == 0)
+        {
+            readyToWork = false;
+        }
+        else
+        {
+            readyToWork = true;
+            readyToNextSpawn = true;
+        }
+    }
+
+
+    /// <summary>
+    /// Перезапуск
+    /// </summary>
+    public void Restart()
+    {
+        currentPack = -1;
+        PrepareToStart();
     }
 }
