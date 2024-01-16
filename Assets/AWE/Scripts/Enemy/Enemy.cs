@@ -31,7 +31,7 @@ public class Enemy : Destructible
     /// <summary>
     /// Скорость перемещения
     /// </summary>
-    [SerializeField] private float movementSpeed;
+    [SerializeField] protected float movementSpeed;
 
     /// <summary>
     /// Урон
@@ -75,7 +75,7 @@ public class Enemy : Destructible
     /// <summary>
     /// Жив ли?
     /// </summary>
-    private bool isDead;
+    protected bool isDead;
     public bool IsDead => isDead;
 
     /// <summary>
@@ -86,7 +86,7 @@ public class Enemy : Destructible
     /// <summary>
     /// Направление движения
     /// </summary>
-    private Vector2 movementDirection = Vector2.zero;
+    protected Vector2 movementDirection = Vector2.zero;
 
     /// <summary>
     /// Ссылка на ригид

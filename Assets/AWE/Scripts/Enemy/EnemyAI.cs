@@ -65,6 +65,8 @@ public class EnemyAI : MonoBehaviour
     private Enemy enemy;
 
 
+    #region Unity Events
+
     private void Start()
     {
         enemy = GetComponent<Enemy>();
@@ -90,6 +92,8 @@ public class EnemyAI : MonoBehaviour
 
         UpdateAI();
     }
+
+    #endregion
 
 
     /// <summary>

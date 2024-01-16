@@ -1,10 +1,32 @@
 ﻿using UnityEngine;
 
+
 /// <summary>
 /// Оружие
 /// </summary>
 public class Weapon : MonoBehaviour
 {
+    /// <summary>
+    /// Тип владельца
+    /// </summary>
+    private enum OwnerType
+    {
+        /// <summary>
+        /// Игрок
+        /// </summary>
+        Player,
+        /// <summary>
+        /// Противник
+        /// </summary>
+        Enemy
+    }
+
+
+    /// <summary>
+    /// Тип владельца
+    /// </summary>
+    private OwnerType ownerType;
+
     /// <summary>
     /// Свойства оружия. ScriptableObject
     /// </summary>
@@ -21,6 +43,11 @@ public class Weapon : MonoBehaviour
     public bool CanFire => refireTimer <= 0;
 
     /// <summary>
+    /// Владелец
+    /// </summary>
+    private Destructible owner;
+
+    /// <summary>
     /// Ссылка на игрока
     /// </summary>
     private Character player;
@@ -33,7 +60,18 @@ public class Weapon : MonoBehaviour
         
     private void Start()
     {
+        owner = transform.root.GetComponent<Destructible>();
         player = transform.root.GetComponent<Character>();
+
+        if (player != null)
+        {
+            ownerType = OwnerType.Player;
+        }
+        else
+        {
+            ownerType = OwnerType.Enemy;
+        }
+
         sr = GetComponentInChildren<SpriteRenderer>();
     }
 
@@ -64,12 +102,20 @@ public class Weapon : MonoBehaviour
     {
         if (weaponProperties == null) return;
         if (CanFire == false) return;
-		if (player.Inventory.TryRemoveWeaponAmmo(weaponProperties, weaponProperties.WasteAmmoPerShot) == false) return;
+		if (ownerType == OwnerType.Player && player.Inventory.TryRemoveWeaponAmmo(weaponProperties, weaponProperties.WasteAmmoPerShot) == false) return;
 
         Projectile projectile = Instantiate(weaponProperties.ProjectilePrefab);
         projectile.transform.position = transform.position;
         projectile.transform.up = transform.right;
-        projectile.SetProjectileSettings(player, Mathf.RoundToInt(weaponProperties.DamageBase * player.Characteristics.Strenght));
+
+        if (ownerType == OwnerType.Player)
+        {
+            projectile.SetProjectileSettings(player, Mathf.RoundToInt(weaponProperties.DamageBase * player.Characteristics.Strenght));
+        }
+        else
+        {
+            projectile.SetProjectileSettings(owner, weaponProperties.DamageBase);
+        }
 
         refireTimer = weaponProperties.RateOfFire;
 
