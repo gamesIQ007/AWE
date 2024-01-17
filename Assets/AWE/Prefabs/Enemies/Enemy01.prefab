@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 4641464547183196274}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.57, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -124,13 +124,11 @@ MonoBehaviour:
       m_Calls: []
   type: 0
   movementSpeed: 0.1
-  damage: 5
   meleeAttackDistance: 1
   shootAttackDistance: 5
   detectDistance: 5
   meleeAttack: {fileID: 6431020015027001959}
-  projectile: {fileID: 7736845821195297427, guid: d8987ba628c361b488218bbdb4d3f862, type: 3}
-  reloadingTime: 1
+  weapon: {fileID: 0}
 --- !u!114 &3150359830698117903
 MonoBehaviour:
   m_ObjectHideFlags: 0

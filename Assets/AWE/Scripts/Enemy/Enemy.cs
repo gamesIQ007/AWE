@@ -34,11 +34,6 @@ public class Enemy : Destructible
     [SerializeField] protected float movementSpeed;
 
     /// <summary>
-    /// Урон
-    /// </summary>
-    [SerializeField] private int damage;
-
-    /// <summary>
     /// Расстояние атаки ближнего боя
     /// </summary>
     [SerializeField] private float meleeAttackDistance;
@@ -63,25 +58,16 @@ public class Enemy : Destructible
     public MeleeAttack MeleeAttack => meleeAttack;
 
     /// <summary>
-    /// Снаряд, которым атакует
+    /// Оружие
     /// </summary>
-    [SerializeField] private Projectile projectile;
-
-    /// <summary>
-    /// Время между атаками дальнего боя
-    /// </summary>
-    [SerializeField] private float reloadingTime;
+    [SerializeField] private Weapon weapon;
+    public Weapon Weapon => weapon;
 
     /// <summary>
     /// Жив ли?
     /// </summary>
     protected bool isDead;
     public bool IsDead => isDead;
-
-    /// <summary>
-    /// Таймер перезарядки
-    /// </summary>
-    private float reloadingTimer = 0;
 
     /// <summary>
     /// Направление движения
@@ -101,15 +87,7 @@ public class Enemy : Destructible
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
-    {
-        if (reloadingTimer > 0)
-        {
-            reloadingTimer -= Time.deltaTime;
-        }
-    }
-
-
+    
     /// <summary>
     /// Направление движения
     /// </summary>
@@ -146,20 +124,9 @@ public class Enemy : Destructible
     /// Атаковать оружием дальнего боя
     /// </summary>
     /// <param name="attackPosition"></param>
+    //public void AttackDistanceWeapon()
     public void AttackDistanceWeapon(Vector3 attackPosition)
     {
-        if (reloadingTimer > 0) return;
-
-        Vector3 difference = attackPosition - transform.position;
-        float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        Quaternion rot = Quaternion.Euler(0, 0, rotationZ - 90.0f);
-
-        transform.localRotation = Quaternion.identity;
-        GameObject obj = Instantiate(projectile.gameObject);
-        obj.transform.position = transform.position;
-        obj.transform.rotation = rot;
-        obj.GetComponent<Projectile>().SetProjectileSettings(this, damage);
-
-        reloadingTimer = reloadingTime;
+        weapon.Fire();
     }
 }

@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 
 
+[RequireComponent(typeof(AudioSource))]
+
 /// <summary>
 /// Оружие
 /// </summary>
@@ -57,11 +59,17 @@ public class Weapon : MonoBehaviour
     /// </summary>
     private SpriteRenderer sr;
 
+    /// <summary>
+    /// Источник звука
+    /// </summary>
+    private AudioSource audioSource;
+
         
     private void Start()
     {
         owner = transform.root.GetComponent<Destructible>();
         player = transform.root.GetComponent<Character>();
+        audioSource = GetComponent<AudioSource>();
 
         if (player != null)
         {
@@ -119,7 +127,7 @@ public class Weapon : MonoBehaviour
 
         refireTimer = weaponProperties.RateOfFire;
 
-        player.audio.clip = weaponProperties.LaunchSFX;
-        player.audio.Play();
+        audioSource.clip = weaponProperties.LaunchSFX;
+        audioSource.Play();
     }
 }

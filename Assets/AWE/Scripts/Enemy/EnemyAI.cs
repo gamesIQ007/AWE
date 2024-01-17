@@ -120,6 +120,8 @@ public class EnemyAI : MonoBehaviour
             }
             if (enemy.Type == EnemyType.Shooter && distanceToTarget > enemy.MeleeAttackDistance && distanceToTarget <= enemy.ShootAttackDistance)
             {
+                //enemy.AttackDistanceWeapon();
+                //Debug.Log(target.transform.position);
                 enemy.AttackDistanceWeapon(target.transform.position);
             }
         }
@@ -161,6 +163,12 @@ public class EnemyAI : MonoBehaviour
                     return true;
                 }
             }*/
+
+            if (enemy.Type == EnemyType.Shooter)
+            {
+                enemy.Weapon.GetComponent<RotateTo>().SetTarget(target);
+            }
+
             StartBehaviour(AIBehaviour.PursuitTarget);
         }
     }
