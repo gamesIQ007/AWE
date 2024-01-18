@@ -84,6 +84,7 @@ MonoBehaviour:
   nickname: 
   velocity: 10
   lifeTime: 5
+  impactEffectPrefab: {fileID: 0}
   isHoming: 0
   isAreaDamage: 0
   radius: 0

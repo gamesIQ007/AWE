@@ -27,7 +27,7 @@ public class Projectile : Entity
     /// <summary>
     /// Префаб посмертного эффекта
     /// </summary>
-    //[SerializeField] private ImpactEffect impactEffectPrefab;
+    [SerializeField] private ImpactEffect impactEffectPrefab;
 
     /// <summary>
     /// Признак самонаведения
@@ -171,7 +171,10 @@ public class Projectile : Entity
     {
         destructible.ApplyDamage(damage);
 
-        destructible.GetComponent<KnockBack>().ApplyKnockBack(transform);
+        if (destructible.GetComponent<KnockBack>() != null)
+        {
+            destructible.GetComponent<KnockBack>().ApplyKnockBack(transform);
+        }
     }
 
     /// <summary>
@@ -181,10 +184,10 @@ public class Projectile : Entity
     /// <param name="pos">Позиция</param>
     private void OnProjectileLifeEnd(Collider2D col, Vector2 pos)
     {
-        /*if (impactEffectPrefab)
+        if (impactEffectPrefab)
         {
             Instantiate(impactEffectPrefab, transform.position, Quaternion.identity);
-        }*/
+        }
         
         Destroy(gameObject);
     }
