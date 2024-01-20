@@ -64,12 +64,18 @@ public class Weapon : MonoBehaviour
     /// </summary>
     private AudioSource audioSource;
 
+    /// <summary>
+    /// Отображение оружия
+    /// </summary>
+    private WeaponVisual weaponVisual;
+
         
     private void Start()
     {
         owner = transform.root.GetComponent<Destructible>();
         player = transform.root.GetComponent<Character>();
         audioSource = GetComponent<AudioSource>();
+        weaponVisual = GetComponent<WeaponVisual>();
 
         if (player != null)
         {
@@ -129,5 +135,13 @@ public class Weapon : MonoBehaviour
 
         audioSource.clip = weaponProperties.LaunchSFX;
         audioSource.Play();
+    }
+
+    /// <summary>
+    /// Задать цель слежения
+    /// </summary>
+    public void SetTarget(GameObject target)
+    {
+        weaponVisual.SetTarget(target);
     }
 }

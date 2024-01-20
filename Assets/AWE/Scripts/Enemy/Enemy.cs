@@ -123,9 +123,8 @@ public class Enemy : Destructible
     /// <summary>
     /// Атаковать оружием дальнего боя
     /// </summary>
-    /// <param name="attackPosition"></param>
-    //public void AttackDistanceWeapon()
-    public void AttackDistanceWeapon(Vector3 attackPosition)
+    /// <param name="attackPosition">Позиция, в которую производится выстрел</param>
+    public virtual void AttackDistanceWeapon(Vector3 attackPosition)
     {
         weapon.Fire();
     }

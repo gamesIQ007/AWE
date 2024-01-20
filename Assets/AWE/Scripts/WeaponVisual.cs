@@ -7,30 +7,62 @@
 public class WeaponVisual : MonoBehaviour
 {
     /// <summary>
-    /// Спрайт
+    /// Цель оружия
     /// </summary>
-    [SerializeField] private SpriteRenderer sr;
-
-    /// <summary>
-    /// Ригид
-    /// </summary>
-    private Rigidbody2D rb;
-
-    /// <summary>
-    /// Смотрим ли вправо
-    /// </summary>
-    private bool lookRight;
-
-
-    private void Start()
+    public enum WeaponTarget
     {
-        rb = transform.root.GetComponent<Rigidbody2D>();
+        /// <summary>
+        /// Курсор
+        /// </summary>
+        Cursor,
+        /// <summary>
+        /// Объект
+        /// </summary>
+        Object
     }
+
+
+    /// <summary>
+    /// Цель оружия
+    /// </summary>
+    [SerializeField] private WeaponTarget weaponTarget;
+
+    /// <summary>
+    /// Скорость поворота
+    /// </summary>
+    [SerializeField] private int speed;
+
+    /// <summary>
+    /// Цель
+    /// </summary>
+    [SerializeField] private GameObject target;
+
 
     private void Update()
     {
-        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, rotationZ);
+        if (weaponTarget == WeaponTarget.Cursor)
+        {
+            Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, 0, rotationZ);
+        }
+        if (weaponTarget == WeaponTarget.Object)
+        {
+            if (target == null) return;
+
+            Vector3 difference = target.transform.position - transform.position;
+            float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+            transform.localRotation = Quaternion.RotateTowards(transform.localRotation, Quaternion.Euler(0, 0, rotationZ), speed * Time.deltaTime);
+        }
+    }
+
+
+    /// <summary>
+    /// Задать цель
+    /// </summary>
+    /// <param name="target">Цель</param>
+    public void SetTarget(GameObject target)
+    {
+        this.target = target;
     }
 }

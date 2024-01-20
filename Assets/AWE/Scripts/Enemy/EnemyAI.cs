@@ -36,38 +36,38 @@ public class EnemyAI : MonoBehaviour
     /// <summary>
     /// Поведение
     /// </summary>
-    [SerializeField] private AIBehaviour aIBehaviour;
+    [SerializeField] protected AIBehaviour aIBehaviour;
     public AIBehaviour Behaviour { get { return aIBehaviour; } set { aIBehaviour = value; } }
 
     /// <summary>
     /// Индекс точки маршрута патрулирования
     /// </summary>
-    [SerializeField] private int patrolPathNodeIndex = 0;
+    [SerializeField] protected int patrolPathNodeIndex = 0;
 
     /// <summary>
     /// Текущая точка перемещения
     /// </summary>
-    private PatrolPathNode currentPathNode;
+    protected PatrolPathNode currentPathNode;
 
     /// <summary>
     /// Маршрут патрулирования
     /// </summary>
-    private PatrolPath patrolPath;
+    [SerializeField] protected PatrolPath patrolPath;
 
     /// <summary>
     /// Цель
     /// </summary>
-    private GameObject target;
+    protected GameObject target;
 
     /// <summary>
     /// Враг
     /// </summary>
-    private Enemy enemy;
+    protected Enemy enemy;
 
 
     #region Unity Events
 
-    private void Start()
+    protected virtual void Start()
     {
         enemy = GetComponent<Enemy>();
 
@@ -78,12 +78,12 @@ public class EnemyAI : MonoBehaviour
         enemy.ChangeHitPoints.AddListener(OnChangeHitPoints);
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
         enemy.ChangeHitPoints.RemoveListener(OnChangeHitPoints);
     }
 
-    private void Update()
+    protected void Update()
     {
         if (aIBehaviour == AIBehaviour.Null)
         {
@@ -99,7 +99,7 @@ public class EnemyAI : MonoBehaviour
     /// <summary>
     /// Обновление ИИ
     /// </summary>
-    private void UpdateAI()
+    protected virtual void UpdateAI()
     {
         ActionUpdateTarget();
 
@@ -120,8 +120,6 @@ public class EnemyAI : MonoBehaviour
             }
             if (enemy.Type == EnemyType.Shooter && distanceToTarget > enemy.MeleeAttackDistance && distanceToTarget <= enemy.ShootAttackDistance)
             {
-                //enemy.AttackDistanceWeapon();
-                //Debug.Log(target.transform.position);
                 enemy.AttackDistanceWeapon(target.transform.position);
             }
         }
@@ -141,7 +139,7 @@ public class EnemyAI : MonoBehaviour
     /// <summary>
     /// Действие обновления цели
     /// </summary>
-    private void ActionUpdateTarget()
+    protected virtual void ActionUpdateTarget()
     {
         if (target == null)
         {
@@ -166,7 +164,7 @@ public class EnemyAI : MonoBehaviour
 
             if (enemy.Type == EnemyType.Shooter)
             {
-                enemy.Weapon.GetComponent<RotateTo>().SetTarget(target);
+                enemy.Weapon.SetTarget(target);
             }
 
             StartBehaviour(AIBehaviour.PursuitTarget);
@@ -176,7 +174,7 @@ public class EnemyAI : MonoBehaviour
     /// <summary>
     /// Найти цель
     /// </summary>
-    private void FindTarget()
+    protected void FindTarget()
     {
         target = Player.Instance.gameObject;
     }
@@ -188,7 +186,7 @@ public class EnemyAI : MonoBehaviour
     /// Начать поведение
     /// </summary>
     /// <param name="behaviour">Поведение</param>
-    private void StartBehaviour(AIBehaviour state)
+    protected void StartBehaviour(AIBehaviour state)
     {
         if (enemy.IsDead) return;
 
@@ -206,7 +204,7 @@ public class EnemyAI : MonoBehaviour
     /// <param name="state">Поведение</param>
     /// <param name="second">Время</param>
     /// <returns></returns>
-    IEnumerator SetBehaviourOnTime(AIBehaviour state, float second)
+    protected IEnumerator SetBehaviourOnTime(AIBehaviour state, float second)
     {
         AIBehaviour previous = aIBehaviour;
         aIBehaviour = state;
@@ -233,7 +231,7 @@ public class EnemyAI : MonoBehaviour
     /// Агент достиг точки назначения
     /// </summary>
     /// <returns>Агент достиг точки назначения</returns>
-    private bool AgentReachedDestination()
+    protected bool AgentReachedDestination()
     {
         if (Vector2.Distance(transform.position, currentPathNode.transform.position) <= 0.5f)
         {
@@ -245,7 +243,7 @@ public class EnemyAI : MonoBehaviour
     /// <summary>
     /// Найти маршрут перемещения
     /// </summary>
-    private void FindMovementArea()
+    protected void FindMovementArea()
     {
         if (patrolPath == null)
         {
