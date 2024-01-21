@@ -12,6 +12,12 @@ public class Boss : Enemy
     [SerializeField] private Weapon[] weapons;
     public Weapon[] Weapons => weapons;
 
+    /// <summary>
+    /// Щит
+    /// </summary>
+    [SerializeField] private GameObject shield;
+    public GameObject Shield => shield;
+
 
     /// <summary>
     /// Атаковать дальнобойным оружием

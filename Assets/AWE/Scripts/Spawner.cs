@@ -105,6 +105,7 @@ public class Spawner : MonoBehaviour
             {
                 readyToNextSpawn = false;
                 readyToWork = false;
+                enabled = false;
                 return;
             }
 
@@ -180,6 +181,7 @@ public class Spawner : MonoBehaviour
         if (spawnPacks.Length == 0)
         {
             readyToWork = false;
+            enabled = false;
         }
         else
         {
@@ -194,6 +196,7 @@ public class Spawner : MonoBehaviour
     /// </summary>
     public void Restart()
     {
+        enabled = true;
         currentPack = -1;
         PrepareToStart();
     }

@@ -2,7 +2,7 @@
 using UnityEngine.Events;
 
 /// <summary>
-/// Триггер, срабатывающий попадание в него игрока
+/// Триггер, срабатывающий на попадание в него игрока
 /// </summary>
 public class Trigger : MonoBehaviour
 {
@@ -39,7 +39,7 @@ public class Trigger : MonoBehaviour
 
             if (oneUseTrigger)
             {
-                GetComponent<BoxCollider2D>().enabled = false;
+                gameObject.SetActive(false);
             }
         }
     }

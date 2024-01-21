@@ -87,6 +87,21 @@ public class Destructible : Entity
     }
 
     /// <summary>
+    /// Неуязвимость включить
+    /// </summary>
+    public void IndestructibleOn()
+    {
+        indestructible = true;
+    }
+    /// <summary>
+    /// Неуязвимость выключить
+    /// </summary>
+    public void IndestructibleOff()
+    {
+        indestructible = false;
+    }
+
+    /// <summary>
     /// Список всех уничтожаемых объектов. HashSet - аналог List, иногда работает быстрее
     /// </summary>
     private static HashSet<Destructible> allDestructibles;
