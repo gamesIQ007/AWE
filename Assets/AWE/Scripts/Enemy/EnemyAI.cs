@@ -83,7 +83,8 @@ public class EnemyAI : MonoBehaviour
         enemy.ChangeHitPoints.RemoveListener(OnChangeHitPoints);
     }
 
-    protected void Update()
+    // Исправить на Update? Враги перемещаются в билде слишком медленно, если перемещение в Update.
+    protected void FixedUpdate()
     {
         if (aIBehaviour == AIBehaviour.Null)
         {

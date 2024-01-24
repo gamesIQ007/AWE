@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c743f8e127283eb44ba3eea7be21bca0, type: 3}
   m_Name: Boss Blue Weapon Properties
   m_EditorClassIdentifier: 
-  nickname: Boss Red Weapon
+  nickname: Boss Blue Weapon
   sprite: {fileID: 21300000, guid: 90d670f96b81f624c8e8b9eadf7d6a52, type: 3}
   projectilePrefab: {fileID: 7736845821195297427, guid: 286a4735d9aadaf49a0e0372cdf04d94, type: 3}
   ammoCountMaxBase: 0
