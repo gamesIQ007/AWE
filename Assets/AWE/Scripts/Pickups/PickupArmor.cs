@@ -1,18 +1,18 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 
 /// <summary>
-/// Подбираемый предмет - броня
+/// РџРѕРґР±РёСЂР°РµРјС‹Р№ РїСЂРµРґРјРµС‚ - Р±СЂРѕРЅСЏ
 /// </summary>
 public class PickupArmor : Pickup
 {
     /// <summary>
-    /// Количество добавляемой брони
+    /// РљРѕР»РёС‡РµСЃС‚РІРѕ РґРѕР±Р°РІР»СЏРµРјРѕР№ Р±СЂРѕРЅРё
     /// </summary>
     [SerializeField] private int addArmorPoints;
 
     /// <summary>
-    /// Эффект при подборе
+    /// Р­С„С„РµРєС‚ РїСЂРё РїРѕРґР±РѕСЂРµ
     /// </summary>
     [SerializeField] private GameObject impactEffect;
 

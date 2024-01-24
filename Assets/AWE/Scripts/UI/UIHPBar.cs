@@ -16,6 +16,11 @@ public class UIHPBar : MonoBehaviour
     /// </summary>
     [SerializeField] private Text hpText;
 
+    /// <summary>
+    /// Здоровье
+    /// </summary>
+    private int hp;
+
 
     private void Start()
     {
@@ -34,6 +39,13 @@ public class UIHPBar : MonoBehaviour
     /// </summary>
     private void OnChangeHitPoints(int damage, Vector2 position)
     {
-        hpText.text = player.HitPoints.ToString();
+        hp = player.HitPoints;
+
+        if (hp < 0)
+        {
+            hp = 0;
+        }
+
+        hpText.text = hp.ToString();
     }
 }

@@ -110,6 +110,8 @@ public class EnemyAI : MonoBehaviour
 
         if (aIBehaviour == AIBehaviour.PursuitTarget)
         {
+            if (target == null) return;
+
             enemy.MoveTo(target);
 
             float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
@@ -176,7 +178,10 @@ public class EnemyAI : MonoBehaviour
     /// </summary>
     protected void FindTarget()
     {
-        target = Player.Instance.gameObject;
+        if (Player.Instance != null)
+        {
+            target = Player.Instance.gameObject;
+        }
     }
 
 
