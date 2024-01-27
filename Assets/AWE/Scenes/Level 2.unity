@@ -5140,7 +5140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nickname: 
   indestructible: 0
-  maxHitPoints: 1000
+  maxHitPoints: 500
   eventOnDeath:
     m_PersistentCalls:
       m_Calls:
@@ -51430,6 +51430,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1270173645}
+        m_TargetAssemblyTypeName: Door, Assembly-CSharp
+        m_MethodName: CloseDoor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   oneUseTrigger: 1
   impactEffect: {fileID: 0}
 --- !u!4 &1447408902
@@ -53629,7 +53641,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -2608572272440560571, guid: 40efb99eba1a11245b67ef85aa817ef8, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 61c30eba7b4d0f449b03d9554591fbb8, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 15038a312d8b1bf478d05079e30d0f12, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -54629,6 +54641,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65a4fc5687237fa418f14641fc25406b, type: 3}
+--- !u!114 &2073709405 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6567219696120893511, guid: 65a4fc5687237fa418f14641fc25406b, type: 3}
+  m_PrefabInstance: {fileID: 2073709404}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb19846b243417a4ab35ee18511c86d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2082606907
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54967,7 +54990,7 @@ PrefabInstance:
     - target: {fileID: 5813845593650160871, guid: d390ac9d77ae1724ba4a04d46436af6b, type: 3}
       propertyPath: pauseMenu
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2073709405}
     - target: {fileID: 7232778625990723310, guid: d390ac9d77ae1724ba4a04d46436af6b, type: 3}
       propertyPath: camera
       value: 

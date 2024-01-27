@@ -16,7 +16,7 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 15b28ab09536b75469f5f0ba2de8a3d6, type: 3}
   projectilePrefab: {fileID: 7736845821195297427, guid: 9120e703d74a82947b20a093f5163d55, type: 3}
   ammoCountMaxBase: 50
-  damageBase: 100
+  damageBase: 25
   wasteAmmoPerShot: 1
   rateOfFire: 0.5
   launchSFX: {fileID: 8300000, guid: a175fc7fca551684e99f207d84f9f2ca, type: 3}

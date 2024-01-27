@@ -90,4 +90,14 @@ public class Door : MonoBehaviour
         openDoorIndicator.SetActive(doorIsOpen);
         closedDoorIndicator.SetActive(!doorIsOpen);
     }
+
+    /// <summary>
+    /// Закрыть дверь
+    /// </summary>
+    public void CloseDoor()
+    {
+        doorIsOpen = false;
+        openDoorIndicator.SetActive(doorIsOpen);
+        closedDoorIndicator.SetActive(!doorIsOpen);
+    }
 }
