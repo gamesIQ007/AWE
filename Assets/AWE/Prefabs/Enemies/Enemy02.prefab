@@ -124,7 +124,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   type: 1
-  movementSpeed: 0.1
+  movementSpeed: 1
   meleeAttackDistance: 1
   shootAttackDistance: 10
   detectDistance: 5

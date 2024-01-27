@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3868d52f400874d4a8b38ad15124e17f, type: 3}
   m_Name: Quest Reach Target
   m_EditorClassIdentifier: 
-  description: Reach Target
-  task: Leave room
+  description: "\u0414\u043E\u0441\u0442\u0438\u0433\u043D\u0438 \u0446\u0435\u043B\u0438"
+  task: "\u0414\u043E\u0441\u0442\u0438\u0433\u043D\u0438 \u0442\u043E\u0447\u043A\u0438
+    \u043D\u0430\u0437\u043D\u0430\u0447\u0435\u043D\u0438\u044F"

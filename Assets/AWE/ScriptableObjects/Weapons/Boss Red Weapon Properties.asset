@@ -18,5 +18,5 @@ MonoBehaviour:
   ammoCountMaxBase: 0
   damageBase: 10
   wasteAmmoPerShot: 0
-  rateOfFire: 0.2
+  rateOfFire: 0.5
   launchSFX: {fileID: 8300000, guid: 9024df2728f793e44bfc2c85fbe1eda4, type: 3}

@@ -33,6 +33,7 @@ public class Hint : MonoBehaviour
         title.text = properties.Title;
         description.text = properties.HintText;
         image.sprite = properties.HintImage;
+        Time.timeScale = 0;
     }
 
 

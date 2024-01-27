@@ -150,6 +150,14 @@ public class EnemyAI : MonoBehaviour
 
             if (target == null) return;
         }
+
+        if (aIBehaviour == AIBehaviour.PursuitTarget)
+        {
+            if (enemy.Type == EnemyType.Shooter)
+            {
+                enemy.Weapon.SetTarget(target);
+            }
+        }
         
         if (Vector2.Distance(transform.position, target.transform.position) <= enemy.DetectDistance)
         {

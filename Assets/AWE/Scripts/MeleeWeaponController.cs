@@ -45,7 +45,7 @@ public class MeleeWeaponController : MonoBehaviour
         if (dest != null && dest != meleeWeapon.Attacker)
         {
             dest.ApplyDamage(meleeWeapon.Damage);
-            dest.GetComponent<KnockBack>().ApplyKnockBack(transform);
+            dest.GetComponent<KnockBack>()?.ApplyKnockBack(transform);
         }
     }
 
